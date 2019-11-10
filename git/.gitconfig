@@ -1,0 +1,17 @@
+[user]
+	name = Wesley Klop
+	email = wesley19097@gmail.com
+	signingkey = A6F6DB7CB772F1A0
+[core]
+	editor = vim
+	excludesfile = ~/.config/git/gitignore
+	autocrlf = input
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
+[commit]
+	gpgsign = true
+[push]
+	default = simple
