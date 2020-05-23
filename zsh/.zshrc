@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/home/wesley/.oh-my-zsh"
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="/snap/bin:$HOME/.cargo/bin:$PATH"
 
 plugins=(git)
 
