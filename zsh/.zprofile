@@ -10,13 +10,12 @@ alias artisan="php artisan"
 # Environment
 #############
 
-export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
-
 export EDITOR="/usr/bin/vim"
 export VISUAL="$EDITOR"
 
 export GPG_TTY="$(tty)"
 
+export NVM_DIR="$HOME/.local/nvm"
 export NPM_PACKAGES="$HOME/.local/node_modules"
 
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"

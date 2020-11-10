@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
+
+set -eo pipefail
+
 echo "Installing dotfiles using stow."
 
-stow git gpg ssh tmux vim zsh
+stow -t "$HOME" git gpg ssh tmux vim zsh
 
 echo "Dotfiles installed, enjoy!"

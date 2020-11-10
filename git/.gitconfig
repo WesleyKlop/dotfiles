@@ -14,4 +14,9 @@
 [commit]
 	gpgsign = true
 [push]
-	default = simple
+    default = simple
+    rebase = false
+[alias]
+    cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
+[pull]
+	rebase = false
