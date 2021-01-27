@@ -25,6 +25,8 @@ export LANG=en_US.UTF-8
 export COMPOSE_DOCKER_CLI_BUILD=1
 export XDEBUG_CONFIG="idekey=PHPSTORM"
 
+export STARSHIP_CONFIG="$HOME/.local/dotfiles/starship.toml"
+
 # Less colors
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
