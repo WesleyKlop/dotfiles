@@ -16,7 +16,8 @@
 [push]
     default = simple
     rebase = false
-[alias]
-    cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop' | xargs -n1 -r git branch -d"
 [pull]
 	rebase = false
+[alias]
+    cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop|main' | xargs -n1 -r git branch -d"
+    update = "!git checkout develop && git pull && git cleanup"
