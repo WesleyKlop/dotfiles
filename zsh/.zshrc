@@ -1,5 +1,3 @@
-set -eo pipefail
-
 # Profiling flag
 if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
@@ -45,3 +43,6 @@ eval "$(starship init zsh)"
 if [[ "$ZPROF" = true ]]; then
   zprof
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+
