@@ -11,7 +11,7 @@ alias artisan="php artisan"
 #############
 
 export EDITOR="/usr/bin/vim"
-export VISUAL="$EDITOR"
+export VISUAL="/usr/bin/vim"
 
 export GPG_TTY="$(tty)"
 
@@ -21,6 +21,9 @@ export NPM_PACKAGES="$HOME/.local/node_modules"
 export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 
 export LANG=en_US.UTF-8
+
+export COMPOSE_DOCKER_CLI_BUILD=1
+export XDEBUG_CONFIG="idekey=PHPSTORM"
 
 # Less colors
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
