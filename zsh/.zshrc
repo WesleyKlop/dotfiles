@@ -36,6 +36,9 @@ plugins=(git ssh-agent zsh-nvm)
 ZSH_DISABLE_COMPFIX="true"
 source "$ZSH/oh-my-zsh.sh"
 
+# Load iTerm2 shell integration
+source "$HOME/.local/dotfiles/iterm2_shell_integration.zsh" || true
+
 # Start starship
 eval "$(starship init zsh)"
 
@@ -44,5 +47,4 @@ if [[ "$ZPROF" = true ]]; then
   zprof
 fi
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
