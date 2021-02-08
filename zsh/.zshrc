@@ -3,9 +3,6 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.local/oh-my-zsh"
-
 # Path as an array for readability
 path=(
     "$HOME/.local/bin"

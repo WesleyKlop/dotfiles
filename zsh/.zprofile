@@ -27,6 +27,8 @@ export XDEBUG_CONFIG="idekey=PHPSTORM"
 
 export STARSHIP_CONFIG="$HOME/.local/dotfiles/starship.toml"
 
+export ZSH="$HOME/.local/oh-my-zsh"
+
 # Less colors
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
 export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
