@@ -29,6 +29,12 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 export STARSHIP_CONFIG="$HOME/.local/dotfiles/starship.toml"
 
+export ZSH="$HOME/.local/oh-my-zsh"
+
+export RUSTUP_HOME="$HOME/.local/rustup"
+export CARGO_HOME="$HOME/.local/cargo"
+
+export COMPOSER_HOME="$HOME/.config/composer"
 
 # Less colors
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
