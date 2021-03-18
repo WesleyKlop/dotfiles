@@ -6,6 +6,9 @@ alias dirs="dirs -v"
 
 alias artisan="php artisan"
 
+alias pip=/usr/local/bin/pip3
+alias python=/usr/local/bin/python3
+
 #############
 # Environment
 #############
@@ -23,9 +26,9 @@ export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 export LANG=en_US.UTF-8
 
 export COMPOSE_DOCKER_CLI_BUILD=1
-export XDEBUG_CONFIG="idekey=PHPSTORM"
 
 export STARSHIP_CONFIG="$HOME/.local/dotfiles/starship.toml"
+
 
 # Less colors
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold

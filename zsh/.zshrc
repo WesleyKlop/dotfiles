@@ -6,17 +6,21 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.local/oh-my-zsh"
 
+# Rust configuration
+export RUSTUP_HOME="$HOME/.local/rustup"
+export CARGO_HOME="$HOME/.local/cargo"
+export COMPOSER_HOME="$HOME/.config/composer"
+
 # Path as an array for readability
 path=(
-    "$HOME/.local/bin"
-    "$HOME/.cargo/bin"
-    "$HOME/.composer/vendor/bin"
-    "/usr/local/opt/mysql-client@5.7/bin"
+    "$CARGO_HOME/bin"
+    "$COMPOSER_HOME/vendor/bin"
     "/usr/local/opt/bash/bin"
     "/usr/local/opt/grep/libexec/gnubin"
     "/usr/local/opt/findutils/libexec/gnubin"
     "/usr/local/opt/gnu-sed/libexec/gnubin"
     "/usr/local/MacGPG2/bin"
+    "$HOME/.local/bin"
     "/usr/local/bin"
     "/usr/bin"
     "/bin"
