@@ -3,35 +3,46 @@ tap "homebrew/cask"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
+brew "automake"
+brew "bash"
+brew "cloc"
 brew "composer"
+brew "coreutils"
+brew "deno"
 brew "dnsmasq", restart_service: true
 brew "exiftool"
 brew "ffmpeg"
 brew "findutils"
-brew "git"
+brew "git", link: false
+brew "gnu-sed"
 brew "libusb"
 brew "gnupg", link: false
-brew "gource"
 brew "grep"
 brew "htop"
-brew "mas"
+brew "mysql", restart_service: true
 brew "neofetch"
 brew "nginx", restart_service: true
+brew "nmap"
 brew "nvm"
-brew "php", restart_service: true
+brew "php"
+brew "postgresql", restart_service: true
+brew "python@3.8"
 brew "rsync"
+brew "rustup-init"
 brew "shellcheck"
-brew "speedtest-cli"
 brew "starship"
 brew "stow"
 brew "tectonic"
+brew "telnet"
 brew "tree"
 brew "unzip"
 brew "vim"
 brew "watchman"
+brew "wget"
 brew "zip"
-cask "adoptopenjdk"
+brew "zsh"
 cask "alfred"
+cask "arduino"
 cask "balenaetcher"
 cask "bitwarden"
 cask "cleanmymac"
@@ -43,21 +54,12 @@ cask "google-chrome"
 cask "gpg-suite"
 cask "iterm2"
 cask "jetbrains-toolbox"
-cask "microsoft-auto-update"
 cask "microsoft-office"
 cask "microsoft-teams"
-cask "postman"
 cask "sequel-ace"
 cask "spectacle"
 cask "spotify"
 cask "visual-studio-code"
 cask "vlc"
 cask "whatsapp"
-mas "1Password 7", id: 1333542190
-mas "Developer", id: 640199958
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Slack", id: 803453959
-mas "Xcode", id: 497799835
+cask "wireshark"
