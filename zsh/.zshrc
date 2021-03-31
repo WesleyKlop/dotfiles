@@ -32,6 +32,7 @@ export PATH=$(IFS=":"; echo "${path[*]}")
 # Zsh plugin configuration
 export NVM_LAZY_LOAD=true
 zstyle :omz:plugins:ssh-agent agent-forwarding on
+zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_inthere id_rsa_polaris
 
 # Zsh plugins to use
 plugins=(git ssh-agent zsh-nvm)
