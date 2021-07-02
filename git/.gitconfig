@@ -21,3 +21,5 @@
 [alias]
     cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop|main' | xargs -n1 -r git branch -d"
     update = "!git checkout develop && git pull && git cleanup"
+[init]
+	defaultBranch = main

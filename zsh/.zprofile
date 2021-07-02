@@ -16,8 +16,6 @@ alias python=/usr/local/bin/python3
 export EDITOR="/usr/bin/vim"
 export VISUAL="/usr/bin/vim"
 
-export GPG_TTY="$(tty)"
-
 export NVM_DIR="$HOME/.local/nvm"
 export NPM_PACKAGES="$HOME/.local/node_modules"
 

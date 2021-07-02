@@ -2,16 +2,13 @@
 
 set -euo pipefail
 
+echo "Installing antigen"
+
+curl -Lo antigen.zsh https://git.io/antigen
+
 echo "Sourcing zprofile for required variables"
 
 source ./zsh/.zprofile
-
-echo "Installing required packages"
-
-ZSH_NVM="$ZSH/custom/plugins/zsh-nvm"
-if [ ! -d "$ZSH_NVM" ]; then
-	git clone https://github.com/lukechilds/zsh-nvm "$ZSH_NVM"
-fi
 
 echo "Installing dotfiles using stow."
 
