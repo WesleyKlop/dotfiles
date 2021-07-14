@@ -11,7 +11,6 @@ source "$HOME/.local/dotfiles/antigen.zsh"
 export RUSTUP_HOME="$HOME/.local/rustup"
 export CARGO_HOME="$HOME/.local/cargo"
 export COMPOSER_HOME="$HOME/.config/composer"
-export GPG_TTY="$(tty)"
 
 # Path as an array for readability
 path=(
@@ -34,13 +33,13 @@ export PATH=$(IFS=":"; echo "${path[*]}")
 # Zsh plugin configuration
 antigen use oh-my-zsh
 
-antigen bundle git
-zstyle :omz:plugins:ssh-agent agent-forwarding on
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_inthere
-antigen bundle ssh-agent
-antigen bundle zsh-nvm
-antigen bundle gpg-agent
+# Plugin config
 export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+
+# Plugin bundles
+antigen bundle git
+antigen bundle gpg-agent
 antigen bundle lukechilds/zsh-nvm
 antigen bundle zsh-users/zsh-syntax-highlighting
 
