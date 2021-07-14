@@ -5,7 +5,7 @@ fi
 
 # Load antigen
 export ADOTDIR="$HOME/.local/antigen"
-source "$HOME/.local/dotfiles/antigen.zsh"
+source "$ADOTDIR/antigen.zsh"
 
 # Rust configuration
 export RUSTUP_HOME="$HOME/.local/rustup"
