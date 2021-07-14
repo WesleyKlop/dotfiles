@@ -1,0 +1,9 @@
+encryption = "gpg"
+
+[data]
+    npmtoken = {{ (index (index (onepassword "zq2crwzfldgqolsqkfou354ob4").details.sections 2).fields 3).v | quote }}
+[secret]
+    command = "onepassword"
+[git]
+    autoAdd = true
+    autoCommit = true
