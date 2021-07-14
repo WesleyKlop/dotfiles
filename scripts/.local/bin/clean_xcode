@@ -1,0 +1,8 @@
+# unused platforms
+sudo rm -rf /Applications/Xcode.app/Contents/Developer/Platforms/{AppleTV*,Watch*,iPhone*}
+# unused swift toolchain
+sudo rm -rf /Applications/Xcode.app/Contents/Developer/Toolchains/Swift_2.3.xctoolchain
+# unused ios stuff
+rm -rf ~/Library/Developer/Xcode/iOS\ DeviceSupport/
+# unused simulators
+rm -rf ~/Library/Developer/CoreSimulator/Devices/*

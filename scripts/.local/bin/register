@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+CMD="${1:-""}"
+INSTALL_LOCATION="$HOME/.local/bin"
+
+
+ln -s $(realpath "$CMD") "$INSTALL_LOCATION"
+
+echo "The \"$CMD\" command is now available globally."

@@ -12,6 +12,6 @@ source ./zsh/.zprofile
 
 echo "Installing dotfiles using stow."
 
-stow -t "$HOME" git gpg ssh tmux vim zsh
+stow -t "$HOME" git gpg ssh tmux vim zsh scripts
 
 echo "Dotfiles installed, enjoy!"

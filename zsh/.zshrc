@@ -12,6 +12,10 @@ export RUSTUP_HOME="$HOME/.local/rustup"
 export CARGO_HOME="$HOME/.local/cargo"
 export COMPOSER_HOME="$HOME/.config/composer"
 
+# Configure lang for ssh shenanigans
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Path as an array for readability
 path=(
     "$CARGO_HOME/bin"
