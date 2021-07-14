@@ -49,9 +49,6 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen apply
 
-# Load iTerm2 shell integration
-source "$HOME/.local/dotfiles/iterm2_shell_integration.zsh" || true
-
 # Start starship
 eval "$(starship init zsh)"
 
