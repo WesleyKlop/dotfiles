@@ -1,7 +1,17 @@
+{{- $email := get . "email" -}}
+{{- if not $email -}}
+    {{- $email = promptString "email" -}}
+{{- end -}}
+{{- $npmToken := get . "npmtoken" -}}
+{{- if not $npmToken -}}
+    {{- $npmToken := promptString "npm token" -}}
+{{- end -}}
+
 encryption = "gpg"
 
 [data]
-    npmtoken = {{ (index (index (onepassword "zq2crwzfldgqolsqkfou354ob4").details.sections 2).fields 3).v | quote }}
+    email = {{ $email | quote }}
+    npmtoken = {{ $npmToken | quote }}
 [secret]
     command = "onepassword"
 [git]
