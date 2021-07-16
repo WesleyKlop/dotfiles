@@ -4,7 +4,7 @@
 {{- end -}}
 {{- $npmToken := get . "npmtoken" -}}
 {{- if not $npmToken -}}
-    {{- $npmToken := promptString "npm token" -}}
+    {{- $npmToken = promptString "npm token" -}}
 {{- end -}}
 
 encryption = "gpg"
