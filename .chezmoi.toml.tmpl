@@ -10,8 +10,12 @@
 
 {{- $personal := false -}}
 {{- $work := false -}}
-{{- $isWsl := (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
-
+{{- $isWsl := false -}}
+{{- if eq .chezmoi.os "linux" -}}
+{{-    if .chezmoi.kernel.osrelease | lower | contains "microsoft" -}}
+{{-       $isWsl = true -}}
+{{-    end -}}
+{{- end -}}
 
 encryption = "gpg"
 remove = true
