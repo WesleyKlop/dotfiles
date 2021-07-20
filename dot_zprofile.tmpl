@@ -20,14 +20,15 @@ export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
 
 export LANG=en_US.UTF-8
 
-export COMPOSE_DOCKER_CLI_BUILD=1
-
 export RUSTUP_HOME="$HOME/.local/rustup"
 export CARGO_HOME="$HOME/.local/cargo"
 
 export COMPOSER_HOME="$HOME/.config/composer"
 
+{{ if not .wsl }}
 export DOCKER_CONFIG="$HOME/.config/docker"
+{{ end }}
+export COMPOSE_DOCKER_CLI_BUILD=1
 
 # Less colors
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
