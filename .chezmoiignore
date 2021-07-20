@@ -1,0 +1,24 @@
+README.md
+install.sh
+
+{{ if ne .chezmoi.os "darwin" }}
+.local/share/Brewfile
+{{ end }}
+
+{{ if ne .chezmoi.os "linux" }}
+.motd_shown
+{{ end }}
+
+{{ if ne .chezmoi.os "windows" }}
+{{ else }}
+.tmux.conf
+.zshrc
+.zprofile
+.gnupg
+.config/starship.toml
+.vimrc
+{{ end }}
+
+{{ if ne .chezmoi.hostname "idris" }}
+.ssh/authorized_keys
+{{ end }}
