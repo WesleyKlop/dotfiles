@@ -1,0 +1,28 @@
+{{- if (eq .chezmoi.os "linux") -}}
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+packages=(
+	curl
+    jq
+	vim
+    tmux
+    htop
+    git
+    neofetch
+    gpg
+    gpg-agent
+    shellcheck
+)
+
+sudo apt update
+
+sudo apt install -y ${packages[@]}
+
+sudo apt upgrade -y
+{{ end }}
+
+{{ end -}}
+{{/* vim: set filetype=bash: */}}

@@ -7,11 +7,21 @@
     {{- $npmToken = promptString "npm token" -}}
 {{- end -}}
 
+
+{{- $personal := false -}}
+{{- $work := false -}}
+{{- $isWsl := (and (eq .chezmoi.os "linux") (.chezmoi.kernel.osrelease | lower | contains "microsoft")) -}}
+
+
 encryption = "gpg"
+remove = true
 
 [data]
     email = {{ $email | quote }}
     npmtoken = {{ $npmToken | quote }}
+    personal = {{ $personal }}
+    work = {{ $work }}
+    wsl = {{ $isWsl }}
 [data.name]
     full = "Wesley Klop"
     first = "Wesley"

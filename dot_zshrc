@@ -58,4 +58,4 @@ if [[ "$ZPROF" = true ]]; then
   zprof
 fi
 
-
+{{/* vim: set filetype=zsh: */}}
