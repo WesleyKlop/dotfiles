@@ -16,6 +16,9 @@
 {{-       $isWsl = true -}}
 {{-    end -}}
 {{- end -}}
+{{- if eq .chezmoi.hostname "KLOPWLT01" -}}
+{{-    $work = true -}}
+{{- end -}}
 
 encryption = "gpg"
 remove = true
