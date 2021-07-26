@@ -14,10 +14,9 @@ brew "dnsmasq", restart_service: true
 brew "dos2unix"
 brew "exiftool"
 brew "findutils"
-brew "git", link: false
+brew "git", link: true
 brew "gnu-sed"
 brew "libusb"
-brew "gnupg", link: false
 brew "grep"
 brew "htop"
 brew "imagemagick"
@@ -32,8 +31,7 @@ brew "postgresql", restart_service: true
 brew "rsync"
 brew "rustup-init"
 brew "shellcheck"
-brew "starship", link: false
-brew "stow"
+brew "starship", link: true
 brew "tectonic"
 brew "unzip"
 brew "vim"
