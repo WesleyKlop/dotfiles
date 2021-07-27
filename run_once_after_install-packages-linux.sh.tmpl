@@ -1,9 +1,9 @@
 {{- if (eq .chezmoi.os "linux") -}}
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -eufo pipefail
 
-{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 packages=(
 	curl
     jq
@@ -17,12 +17,18 @@ packages=(
     shellcheck
 )
 
+{{- if (eq .chezmoi.hostname "idris") -}}
+packages+=(
+    borgmatic
+)
+{{- end -}}
+
 sudo apt update
 
 sudo apt install -y ${packages[@]}
 
 sudo apt upgrade -y
-{{ end }}
+{{- end -}}
 
-{{ end -}}
+{{- end -}}
 {{/* vim: set filetype=bash: */}}
