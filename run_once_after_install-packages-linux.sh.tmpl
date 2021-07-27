@@ -3,7 +3,7 @@
 
 set -eufo pipefail
 
-{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
 packages=(
 	curl
     jq
@@ -17,11 +17,11 @@ packages=(
     shellcheck
 )
 
-{{- if (eq .chezmoi.hostname "idris") -}}
+{{ if (eq .chezmoi.hostname "idris") -}}
 packages+=(
     borgmatic
 )
-{{- end -}}
+{{- end }}
 
 sudo apt update
 
