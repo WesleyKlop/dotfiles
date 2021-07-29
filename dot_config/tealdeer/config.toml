@@ -25,7 +25,7 @@ italic = false
 foreground = "cyan"
 underline = true
 bold = false
-italic = true 
+italic = false
 
 [display]
 compact = false
