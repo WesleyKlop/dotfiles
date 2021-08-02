@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
-php artisan whitebox:track-time --description=Overleg --billable=0 --time=1:00 --datetime="$1 9:00"
-php artisan whitebox:track-time --description=Development --billable=1 --time=7:00 --datetime="$1 10:00"
-php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$(date -d "$1+1 day" +%F) 9:00"
-php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$(date -d "$1+2 days" +%F) 9:00"
-php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$(date -d "$1+4 days" +%F) 9:00"
 
-next_week="$(date -d "$1+7 days" +%F)"
+selected_date="$(date -d "${1:-+0} day" +%F)"
 
-read -p "Next week: $next_week. Continue? " -n 1 -r
+read -p "Did you work today on $selected_date? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    exec ./log-week.sh "$next_week"
+    echo "Okay! Logging 8 hours for that day."
+else
+    exit 0
 fi
+
+case "$(date -d "$selected_date" +%u)" in
+1)
+    echo "Assuming there was a meeting today so logging that as well."
+    php artisan whitebox:track-time --description=Overleg --billable=0 --time=1:00 --datetime="$selected_date 9:00"
+    php artisan whitebox:track-time --description=Development --billable=1 --time=7:00 --datetime="$selected_date 10:00"
+    ;;
+6 | 7)
+    echo "in het weekend werken smh"
+    ;&
+2 | 3 | 4 | 5)
+    php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$selected_date 9:00"
+    ;;
+esac
