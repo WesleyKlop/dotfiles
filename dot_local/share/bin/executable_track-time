@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+php artisan whitebox:track-time --description=Overleg --billable=0 --time=1:00 --datetime="$1 9:00"
+php artisan whitebox:track-time --description=Development --billable=1 --time=7:00 --datetime="$1 10:00"
+php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$(date -d "$1+1 day" +%F) 9:00"
+php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$(date -d "$1+2 days" +%F) 9:00"
+php artisan whitebox:track-time --description=Development --billable=1 --time=8:00 --datetime="$(date -d "$1+4 days" +%F) 9:00"
+
+next_week="$(date -d "$1+7 days" +%F)"
+
+read -p "Next week: $next_week. Continue? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    exec ./log-week.sh "$next_week"
+fi
