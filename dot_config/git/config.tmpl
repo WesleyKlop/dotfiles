@@ -19,7 +19,7 @@
 [pull]
 # 	rebase = false
 [alias]
-    cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop|main' | xargs -n1 -r git branch -d"
+    cleanup = "!git branch --merged | grep -v -P '^\\*|master|develop|main|test|production' | xargs -n1 -r git branch -d"
     update = "!git checkout develop && git pull && git cleanup"
 [init]
 	defaultBranch = main
