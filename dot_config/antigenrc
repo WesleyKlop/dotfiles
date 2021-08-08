@@ -1,0 +1,8 @@
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle gpg-agent
+antigen bundle lukechilds/zsh-nvm
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply

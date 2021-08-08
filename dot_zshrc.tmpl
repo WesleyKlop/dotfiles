@@ -6,20 +6,12 @@ fi
 # Load antigen
 source "$ADOTDIR/antigen.zsh"
 
-# Zsh plugin configuration
-antigen use oh-my-zsh
-
 # Plugin config
 export NVM_LAZY_LOAD=true
 export NVM_AUTO_USE=true
 
-# Plugin bundles
-antigen bundle git
-antigen bundle gpg-agent
-antigen bundle lukechilds/zsh-nvm
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-antigen apply
+# Zsh plugin configuration
+antigen init "$HOME/.config/antigenrc"
 
 # Start starship
 eval "$(starship init zsh)"
