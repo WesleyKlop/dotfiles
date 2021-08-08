@@ -1,0 +1,24 @@
+# Profiling flag
+if [[ "$ZPROF" = true ]]; then
+  zmodload zsh/zprof
+fi
+
+# Load antigen
+source "$ADOTDIR/antigen.zsh"
+
+# Plugin config
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+
+# Zsh plugin configuration
+antigen init "$HOME/.config/antigenrc"
+
+# Start starship
+eval "$(starship init zsh)"
+
+# Profiling end flag
+if [[ "$ZPROF" = true ]]; then
+  zprof
+fi
+
+
