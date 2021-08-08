@@ -15,6 +15,10 @@ packages=(
     gpg
     gpg-agent
     shellcheck
+    # Required for building Rust toolchain
+    libpq-dev
+    libssl-dev
+    pkg-config
 )
 
 {{ if (eq .chezmoi.hostname "idris") -}}
