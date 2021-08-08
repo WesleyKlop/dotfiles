@@ -5,3 +5,4 @@
 .gitconfig
 .cargo
 .rustup
+.zshenv
