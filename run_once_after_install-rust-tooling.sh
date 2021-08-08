@@ -10,7 +10,6 @@ packages=(
     cargo-outdated
     cargo-readme
     cargo-update
-    diesel_cli
     tealdeer
 )
 
@@ -24,3 +23,4 @@ else
 fi
 
 cargo install "${packages[@]}"
+cargo install diesel_cli --no-default-features --features postgres
