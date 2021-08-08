@@ -3,6 +3,7 @@ install.sh
 
 {{ if ne .chezmoi.os "darwin" }}
 .local/share/Brewfile
+.local/share/bin/clean-xcode
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
