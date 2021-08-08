@@ -1,0 +1,42 @@
+# General configuration
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export EDITOR="/usr/bin/vim"
+export VISUAL="/usr/bin/vim"
+
+
+# Rust configuration
+export RUSTUP_HOME="$HOME/.local/rustup"
+export CARGO_HOME="$HOME/.local/cargo"
+
+# PHP configuration
+export COMPOSER_HOME="$HOME/.config/composer"
+
+# Node configuration
+export NVM_DIR="$HOME/.local/nvm"
+export NPM_PACKAGES="$HOME/.local/node_modules"
+
+# Docker configuration
+export COMPOSE_DOCKER_CLI_BUILD=1
+
+# PATH configuration. TODO: Per-platform configuration
+path=(
+    "$CARGO_HOME/bin"
+    "$COMPOSER_HOME/vendor/bin"
+    "/usr/local/opt/bash/bin"
+    "/usr/local/opt/grep/libexec/gnubin"
+    "/usr/local/opt/findutils/libexec/gnubin"
+    "/usr/local/opt/gnu-sed/libexec/gnubin"
+    "/usr/local/MacGPG2/bin"
+    "$HOME/.local/share/bin"
+    "$HOME/.local/bin"
+    "/usr/local/bin"
+    "/usr/bin"
+    "/bin"
+    "/usr/sbin"
+    "/sbin"
+)
+export PATH=$(IFS=":"; echo "${path[*]}")
+
