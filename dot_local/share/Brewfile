@@ -30,6 +30,7 @@ brew "platformio"
 brew "postgresql", restart_service: true
 brew "rsync"
 brew "rustup-init"
+brew "ripgrep"
 brew "shellcheck"
 brew "starship"
 brew "tectonic"
