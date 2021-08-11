@@ -18,6 +18,7 @@ set showcmd
 set shell=/bin/zsh
 set ruler
 set backspace=indent,eol,start
+set viminfo+=n~/.cache/viminfo
 
 syntax on
 
