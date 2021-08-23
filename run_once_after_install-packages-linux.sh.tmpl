@@ -3,7 +3,13 @@
 
 set -eufo pipefail
 
-{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
+## cross-distro packages
+# Starship
+curl -fsSL "https://starship.rs/install.sh" | sh
+# Deno
+curl -fsSL "https://deno.land/x/install/install.sh" | sh
+
+{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 packages=(
 	curl
     jq
