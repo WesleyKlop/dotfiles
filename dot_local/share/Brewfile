@@ -6,6 +6,7 @@ tap "homebrew/services"
 brew "automake"
 brew "bash"
 brew "python@3.9"
+brew "borgbackup"
 brew "glib"
 brew "pkg-config"
 brew "composer"
@@ -14,12 +15,17 @@ brew "dnsmasq", restart_service: true
 brew "dos2unix"
 brew "exiftool"
 brew "findutils"
+brew "fzf"
+brew "gh"
 brew "git"
 brew "gnu-sed"
 brew "grep"
 brew "htop"
+brew "httpie"
 brew "imagemagick"
+brew "jq"
 brew "libusb"
+brew "mas"
 brew "mysql", restart_service: true
 brew "neofetch"
 brew "nginx", restart_service: true
@@ -28,9 +34,9 @@ brew "nvm"
 brew "php", restart_service: true
 brew "platformio"
 brew "postgresql", restart_service: true
+brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
-brew "ripgrep"
 brew "shellcheck"
 brew "starship"
 brew "tectonic"
@@ -60,4 +66,10 @@ cask "openscad"
 cask "spotify"
 cask "visual-studio-code"
 cask "vlc"
+cask "vorta"
 cask "whatsapp"
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Slack", id: 803453959
+mas "Xcode", id: 497799835
