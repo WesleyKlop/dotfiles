@@ -5,11 +5,18 @@ set -eufo pipefail
 
 ## cross-distro packages
 # Starship
-curl -fsSL "https://starship.rs/install.sh" | sh
+sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 # Deno
-curl -fsSL "https://deno.land/x/install/install.sh" | sh
+sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
 
 {{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+# Latest bat release
+latest_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/sharkdp/bat/releases/latest)
+latest_tag="${latest_url##*/v}"
+curl -Lo "/tmp/${latest_tag}_bat.deb" "https://github.com/sharkdp/bat/releases/download/v${latest_tag}/bat_${latest_tag}_amd64.deb"
+sudo dpkg -i "/tmp/${latest_tag}_bat.deb" 
+rm "/tmp/${latest_tag}_bat.deb" 
+
 packages=(
 	curl
     jq
@@ -39,6 +46,7 @@ sudo apt update
 sudo apt install -y ${packages[@]}
 
 sudo apt upgrade -y
+
 {{- end -}}
 
 {{- end -}}

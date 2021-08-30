@@ -5,6 +5,7 @@ export LANG=en_US.UTF-8
 
 export EDITOR="vim"
 export VISUAL="vim"
+export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 
 # GnuPG configuration
 export GNUPGHOME="$HOME/.local/gnupg"
@@ -44,7 +45,7 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 
 # Command aliases
 alias dirs="dirs -v"
