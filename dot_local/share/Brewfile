@@ -16,6 +16,7 @@ brew "dnsmasq", restart_service: true
 brew "dos2unix"
 brew "exiftool"
 brew "findutils"
+brew "folly"
 brew "fzf"
 brew "gh"
 brew "git"
@@ -26,6 +27,7 @@ brew "httpie"
 brew "imagemagick"
 brew "jq"
 brew "libusb"
+brew "mailhog", restart_service: true
 brew "mas"
 brew "mysql", restart_service: true
 brew "neofetch"
