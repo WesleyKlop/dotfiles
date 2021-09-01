@@ -1,7 +1,7 @@
 {{- if (eq .chezmoi.os "darwin") -}}
 #!/usr/bin/env bash
 brew bundle --no-lock --file=/dev/stdin <<EOF
-{{ include "./dot_local/share/Brewfile" }}
+{{ include "./Brewfile" }}
 EOF
 {{ end -}}
 {{/* vim: set filetype=bash: */}}

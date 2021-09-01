@@ -1,8 +1,8 @@
 README.md
 install.sh
+Brewfile
 
 {{ if ne .chezmoi.os "darwin" }}
-.local/share/Brewfile
 .local/share/bin/clean-xcode
 .local/share/bin/dump-brewfile
 {{ end }}
