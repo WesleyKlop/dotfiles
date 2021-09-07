@@ -26,6 +26,9 @@ export NPM_PACKAGES="$HOME/.local/node_modules"
 export DENO_INSTALL="$HOME/.local/deno"
 export DENO_INSTALL_ROOT="$HOME/.local/bin"
 
+# Go configuration
+export GOPATH="$HOME/.local/go"
+
 # Docker configuration
 {{ if not .wsl }}
 export DOCKER_CONFIG="$HOME/.config/docker"
