@@ -7,7 +7,11 @@ set -eufo pipefail
 # Starship
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 # Deno
-sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
+if ! command -v deno &> /dev/null; then
+    sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
+else
+    deno upgrade
+fi
 
 {{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 # Latest bat release
