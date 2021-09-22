@@ -2,6 +2,21 @@
 
 set -euo pipefail
 
+echo "Upgrading chezmoi"
+chezmoi upgrade
+
+echo "Installing vim plugins"
+mkdir -p "$HOME/.vim/bundle"
+
+if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+    # Vundle for vim plugins
+    git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+fi
+
+vim +PluginInstall +qall
+
+echo "Setting up rust"
+
 packages=(
     cargo-audit
     cargo-cache

@@ -28,16 +28,16 @@ brew "httpie"
 brew "imagemagick"
 brew "jq"
 brew "libusb"
-brew "mailhog", restart_service: true
+brew "mailhog"
 brew "mas"
 brew "mysql", restart_service: true
 brew "neofetch"
-brew "nginx", restart_service: true
+brew "nginx"
 brew "nvm"
-brew "php", restart_service: true
+brew "php"
 brew "php@7.3"
 brew "platformio"
-brew "postgresql", restart_service: true
+brew "postgresql"
 brew "ripgrep"
 brew "rsync"
 brew "rustup-init"
