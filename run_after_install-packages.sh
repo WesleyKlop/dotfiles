@@ -6,11 +6,15 @@ echo "Upgrading chezmoi"
 chezmoi upgrade
 
 echo "Installing vim plugins"
-mkdir -p "$HOME/.vim/bundle"
+mkdir -p "$HOME/.local/vim/bundle"
 
-if [ ! -d "$HOME/.vim/bundle/Vundle.vim" ]; then
+if [ ! -d "$HOME/.local/vim/bundle/Vundle.vim" ]; then
     # Vundle for vim plugins
-    git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.vim/bundle/Vundle.vim"
+    git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.local/vim/bundle/Vundle.vim"
+else
+    pushd "$HOME/.local/vim/bundle/Vundle.vim"
+    git pull
+    popd
 fi
 
 vim +PluginInstall +qall
