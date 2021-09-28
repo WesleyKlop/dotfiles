@@ -1,0 +1,20 @@
+{
+  "useTaobaoRegistry": false,
+  "presets": {
+    "web-apps": {
+      "useConfigFiles": true,
+      "plugins": {
+        "@vue/cli-plugin-babel": {},
+        "@vue/cli-plugin-vuex": {},
+        "@vue/cli-plugin-eslint": {
+          "config": "prettier",
+          "lintOn": [
+            "save",
+            "commit"
+          ]
+        }
+      },
+      "vueVersion": "3"
+    }
+  }
+}
