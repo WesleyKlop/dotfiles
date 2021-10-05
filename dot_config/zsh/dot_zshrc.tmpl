@@ -13,6 +13,10 @@ export NVM_AUTO_USE=true
 # Zsh plugin configuration
 antigen init "$HOME/.config/antigenrc"
 
+# Some aliases that are overriden by antigen...
+alias ls="exa"
+alias la="exa -lah"
+
 # Start starship
 eval "$(starship init zsh)"
 
