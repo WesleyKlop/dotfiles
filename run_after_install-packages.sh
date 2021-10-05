@@ -6,13 +6,14 @@ echo "Upgrading chezmoi"
 chezmoi upgrade
 
 echo "Installing vim plugins"
-mkdir -p "$HOME/.local/vim/bundle"
+VIM_BUNDLE_DIR="$HOME/.local/vim/bundle"
+mkdir -p "$VIM_BUNDLE_DIR"
 
-if [ ! -d "$HOME/.local/vim/bundle/Vundle.vim" ]; then
+if [ ! -d "$VIM_BUNDLE_DIR/Vundle.vim" ]; then
     # Vundle for vim plugins
-    git clone https://github.com/VundleVim/Vundle.vim.git "$HOME/.local/vim/bundle/Vundle.vim"
+    git clone https://github.com/VundleVim/Vundle.vim.git "$VIM_BUNDLE_DIR/Vundle.vim"
 else
-    pushd "$HOME/.local/vim/bundle/Vundle.vim"
+    pushd "$VIM_BUNDLE_DIR/Vundle.vim"
     git pull
     popd
 fi
@@ -41,5 +42,10 @@ else
     rustup update
 fi
 
-cargo install "${packages[@]}"
-cargo install diesel_cli --no-default-features --features postgres
+if ! command -v cargo-install-update &> /dev/null; then
+    cargo install "${packages[@]}"
+    cargo install diesel_cli --no-default-features --features postgres
+else
+    cargo install-update "${packages[@]}"
+    cargo install-update diesel_cli 
+fi

@@ -1,0 +1,33 @@
+# GnuPG configuration
+export GNUPGHOME="$HOME/.local/gnupg"
+
+# Platform.io configuration
+export PLATFORMIO_CORE_DIR="$HOME/.local/platform.io"
+
+# Rust configuration
+export RUSTUP_HOME="$HOME/.local/rustup"
+export CARGO_HOME="$HOME/.local/cargo"
+
+# PHP configuration
+export COMPOSER_HOME="$HOME/.config/composer"
+
+# Node configuration
+export NVM_DIR="$HOME/.local/nvm"
+export NPM_PACKAGES="$HOME/.local/node_modules"
+export DENO_INSTALL="$HOME/.local/deno"
+export DENO_INSTALL_ROOT="$HOME/.local/bin"
+export VUE_CLI_CONFIG_PATH="$HOME/.config/vue/.vuerc"
+
+# Go configuration
+export GOPATH="$HOME/.local/go"
+
+# Docker configuration
+{{ if not .wsl }}
+export DOCKER_CONFIG="$HOME/.config/docker"
+{{ end }}
+export COMPOSE_DOCKER_CLI_BUILD=1
+
+# Shell configuration
+export ADOTDIR="$HOME/.local/antigen"
+export HISTFILE="$HOME/.cache/zsh_history"
+

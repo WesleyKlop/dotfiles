@@ -24,4 +24,5 @@ Brewfile
 
 {{ if ne .chezmoi.hostname "idris" }}
 .ssh/authorized_keys
+.motd_shown
 {{ end }}

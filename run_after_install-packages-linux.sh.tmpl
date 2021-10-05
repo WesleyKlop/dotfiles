@@ -3,6 +3,11 @@
 
 set -eufo pipefail
 
+
+# This script relies on environment so don't rely on the shell to have the latest version
+{{ template "environment-config.sh.tmpl" . }}
+
+
 ## cross-distro packages
 # Starship
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
