@@ -31,6 +31,7 @@ packages=(
     cargo-readme
     cargo-update
     tealdeer
+    ravedude
 )
 
 echo "Checking for existing rust installation..."
