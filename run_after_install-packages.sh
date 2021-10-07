@@ -30,8 +30,10 @@ packages=(
     cargo-outdated
     cargo-readme
     cargo-update
+    cargo-generate
+
     tealdeer
-    ravedude
+    ravedude # AVR tooling
 )
 
 echo "Checking for existing rust installation..."
