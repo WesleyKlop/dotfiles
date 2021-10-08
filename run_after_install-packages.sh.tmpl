@@ -34,6 +34,10 @@ packages=(
 
     tealdeer
     ravedude # AVR tooling
+    modenv
+{{ if ne .chezmoi.os "darwin" }}
+    exa
+{{ end }}
 )
 
 echo "Checking for existing rust installation..."

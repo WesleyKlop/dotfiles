@@ -1,12 +1,12 @@
 .bash_history
 .bashrc
-.profile
+.cargo
 .composer
 .gitconfig
-.cargo
+.ideavimrc
+.profile
 .rustup
+.viminfo
+.vimrc
 .zprofile
 .zshrc
-.vimrc
-.viminfo
-.ideavimrc

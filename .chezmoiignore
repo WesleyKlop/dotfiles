@@ -15,11 +15,11 @@ Brewfile
 {{/* Windows specific files here */}}
 {{ else }}
 .tmux.conf
-.zshrc
-.zprofile
+.config/zsh/.zshrc
+.config/zsh/.zprofile
 .gnupg
 .config/starship.toml
-.vimrc
+.config/vim/.vimrc
 {{ end }}
 
 {{ if ne .chezmoi.hostname "idris" }}
