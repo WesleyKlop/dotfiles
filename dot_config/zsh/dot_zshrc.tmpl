@@ -13,8 +13,18 @@ export NVM_AUTO_USE=true
 # Zsh plugin configuration
 antigen init "$HOME/.config/antigenrc"
 
-# Some aliases that are overriden by antigen...
-alias ls="exa"
+# Command aliases, some are overwritten by oh-my-zsh
+alias dirs="dirs -v"
+
+alias artisan="php artisan"
+
+alias top="htop"
+
+alias diff='diff --color=auto'
+
+alias ip='ip -color=auto'
+
+alias ls='exa' 
 alias la="exa -lah"
 
 alias grep='rg'
