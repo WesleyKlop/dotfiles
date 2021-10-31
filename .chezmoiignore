@@ -5,6 +5,8 @@ Brewfile
 {{ if ne .chezmoi.os "darwin" }}
 .local/share/bin/clean-xcode
 .local/share/bin/dump-brewfile
+.local/share/bin/valet-start
+.local/share/bin/valet-stop
 {{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
