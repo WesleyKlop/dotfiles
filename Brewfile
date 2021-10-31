@@ -29,7 +29,6 @@ brew "imagemagick"
 brew "jq"
 brew "libusb"
 brew "mailhog", restart_service: true
-brew "mas"
 brew "mysql", restart_service: true
 brew "neofetch"
 brew "nghttp2"
@@ -68,8 +67,3 @@ cask "visual-studio-code"
 cask "vlc"
 cask "vorta"
 cask "whatsapp"
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
-mas "Slack", id: 803453959
-mas "Xcode", id: 497799835
