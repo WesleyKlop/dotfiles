@@ -31,7 +31,7 @@ brew "libusb"
 brew "mailhog", restart_service: true
 brew "mysql", restart_service: true
 brew "neofetch"
-brew "nghttp2"
+brew "neovim"
 brew "nginx"
 brew "nvm"
 brew "php@7.4"
