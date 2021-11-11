@@ -27,6 +27,7 @@ brew "htop"
 brew "libheif"
 brew "imagemagick"
 brew "jq"
+brew "kubernetes-cli"
 brew "libusb"
 brew "mailhog", restart_service: true
 brew "mysql", restart_service: true
