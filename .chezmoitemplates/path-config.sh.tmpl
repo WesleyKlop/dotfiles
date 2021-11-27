@@ -1,0 +1,21 @@
+ # Path as an array for readability
+ path=(
+     "$CARGO_HOME/bin"
+     "$COMPOSER_HOME/vendor/bin"
+ {{ if (eq .chezmoi.os "darwin") }}
+     "/opt/homebrew/bin"
+     "/usr/local/MacGPG2/bin"
+ {{ end }}
+     "$HOME/.local/share/bin"
+     "$HOME/.local/bin"
+     "$HOME/.local/go/bin"
+     "$HOME/.local/deno/bin"
+     "/usr/local/sbin"
+     "/usr/local/bin"
+     "/usr/bin"
+     "/bin"
+     "/usr/sbin"
+     "/sbin"
+ )
+ typeset -U path
+ export PATH=$(IFS=":"; echo "${path[*]}")

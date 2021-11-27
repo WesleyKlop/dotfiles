@@ -2,8 +2,10 @@
 
 set -euo pipefail
 
+{{ template "environment-config.sh.tmpl" . }}
+
 echo "Upgrading chezmoi"
-chezmoi upgrade
+~/.local/bin/chezmoi upgrade
 
 echo "Installing vim plugins"
 VIM_BUNDLE_DIR="$HOME/.local/vim/bundle"
@@ -33,7 +35,6 @@ packages=(
     cargo-generate
 
     tealdeer
-    ravedude # AVR tooling
     modenv
 {{ if ne .chezmoi.os "darwin" }}
     exa
@@ -41,18 +42,19 @@ packages=(
 )
 
 echo "Checking for existing rust installation..."
-if ! command -v cargo rustup &> /dev/null; then
-    echo "Can't find cargo in \$PATH, so installing through rustup."
+if [ ! -d "$CARGO_HOME" ]; then
+    echo "Can't find cargo home folder, so installing through rustup."
     curl https://sh.rustup.rs -sSf | sh -s -- --no-modify-path -y
 else
     echo "Rust is already installed, trying to update to the latest version."
-    rustup update
+    "$CARGO_HOME/bin/rustup" update
 fi
 
-if ! command -v cargo-install-update &> /dev/null; then
-    cargo install "${packages[@]}"
-    cargo install diesel_cli --no-default-features --features postgres
+cargo="$CARGO_HOME/bin/cargo"
+if [ ! -f "$CARGO_HOME/bin/cargo-install-update" ]; then
+    $cargo install "${packages[@]}"
+    $cargo install diesel_cli --no-default-features --features postgres
 else
-    cargo install-update "${packages[@]}"
-    cargo install-update diesel_cli 
+    $cargo install-update "${packages[@]}"
+    $cargo install-update diesel_cli 
 fi
