@@ -10,3 +10,4 @@
 .vimrc
 .zprofile
 .zshrc
+.tmux.conf
