@@ -58,3 +58,10 @@ else
     $cargo install-update "${packages[@]}"
     $cargo install-update diesel_cli 
 fi
+
+
+{{ if eq .toolchains.php true }}
+echo "Installing/updating php toolchain..."
+
+composer global update
+{{ end }}
