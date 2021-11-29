@@ -11,7 +11,7 @@ set nocompatible
 filetype off
 
 set rtp+=~/.local/vim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin('~/.local/vim/bundle')
 
 Plugin 'scrooloose/syntastic'
 Plugin 'rust-lang/rust.vim'
