@@ -11,3 +11,6 @@
 .zprofile
 .zshrc
 .tmux.conf
+.mysql_history
+.npmrc
+.psql_history

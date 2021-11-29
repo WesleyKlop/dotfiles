@@ -1,3 +1,21 @@
+# XDG configuration
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# MySQL configuration
+export MYSQL_HISTFILE="$XDG_STATE_HOME/mysql_history"
+
+# Postgres configuration
+export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
+
+# SQLite configuration
+export SQLITE_HISTORY=$XDG_STATE_HOME/sqlite_history
+
 # GnuPG configuration
 export GNUPGHOME="$HOME/.local/gnupg"
 
@@ -12,6 +30,7 @@ export CARGO_HOME="$HOME/.local/cargo"
 export COMPOSER_HOME="$HOME/.config/composer"
 
 # Node configuration
+export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$HOME/.local/nvm"
 export NPM_PACKAGES="$HOME/.local/node_modules"
 export DENO_INSTALL="$HOME/.local/deno"
@@ -29,5 +48,5 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 
 # Shell configuration
 export ADOTDIR="$HOME/.local/antigen"
-export HISTFILE="$HOME/.cache/zsh_history"
+export HISTFILE="$XDG_STATE_HOME/zsh_history"
 
