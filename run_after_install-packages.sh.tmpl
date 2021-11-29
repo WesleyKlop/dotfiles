@@ -34,10 +34,11 @@ packages=(
     cargo-update
     cargo-generate
 
-    tealdeer
     modenv
 {{ if ne .chezmoi.os "darwin" }}
     exa
+    du-dust
+    tealdeer
 {{ end }}
 )
 
