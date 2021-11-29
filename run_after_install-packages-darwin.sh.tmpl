@@ -4,8 +4,11 @@
 # This script relies on environment so don't rely on the shell to have the latest version
 {{ template "environment-config.sh.tmpl" . }}
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
-{{ include "./Brewfile" }}
+brew bundle install \
+  --no-lock \
+   {{ if eq .automation.update true }}--no-upgrade{{ end }} \
+  --file=/dev/stdin <<EOF
+{{ template "Brewfile.tmpl" . }}
 EOF
 {{ end -}}
 {{/* vim: set filetype=bash: */}}

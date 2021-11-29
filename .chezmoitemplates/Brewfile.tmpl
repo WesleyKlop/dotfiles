@@ -1,0 +1,112 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/cask-versions"
+tap "homebrew/core"
+tap "homebrew/services"
+
+# To add App Store items
+brew "mas"
+
+# Essential tools
+brew "bash"
+brew "curl"
+brew "exiftool"
+brew "findutils"
+brew "git"
+brew "neovim"
+brew "zip"
+brew "unzip"
+brew "watch"
+cask "gpg-suite"
+
+# Useful tools 
+brew "bat"
+brew "dust"
+brew "exa"
+brew "fzf"
+brew "htop"
+brew "jq"
+brew "ripgrep"
+brew "rsync"
+brew "tealdeer"
+brew "tree"
+
+# Fun stuff
+brew "neofetch"
+
+# Required for shell
+brew "starship"
+brew "zsh"
+
+# Terminal app
+cask "iterm2"
+
+# Php toolchain
+{{ if eq .toolchains.php true }}
+tap "shivammathur/php"
+
+brew "php", link: false
+brew "php@7.4", link: true
+brew "php@8.0"
+brew "composer"
+{{ end }}
+
+# Deno toolchain
+{{ if eq .toolchains.deno true }}
+brew "deno"
+{{ end }}
+
+# Node toolchain
+{{ if eq .toolchains.node true }}
+brew "nvm"
+{{ end }}
+
+# Rust toolchain
+{{ if eq .toolchains.rust true }}
+brew "rustup-init"
+{{ end }}
+
+# Java toolchain
+{{ if eq .toolchains.java true }}
+cask "temurin"
+{{ end }}
+
+# Automated backups
+brew "borgbackup"
+cask "vorta"
+
+# Kubernetes
+brew "kubernetes-cli"
+cask "lens"
+
+# Databases
+brew "mariadb"
+brew "postgresql", restart_service: true
+
+# Password managers
+cask "1password-beta"
+cask "bitwarden"
+
+# Communication
+mas "Slack", id: 803453959
+cask "discord"
+cask "microsoft-teams"
+cask "whatsapp"
+
+# Development tooling
+cask "docker"
+cask "jetbrains-toolbox"
+cask "visual-studio-code"
+
+# School and work apps
+cask "forticlient-vpn"
+cask "postman"
+cask "stoplight-studio"
+cask "microsoft-office"
+
+# Other casks
+cask "alfred"
+cask "cleanmymac"
+cask "google-chrome"
+cask "spotify"
+cask "vlc"

@@ -3,34 +3,27 @@
 
 set -eufo pipefail
 
-
 # This script relies on environment so don't rely on the shell to have the latest version
 {{ template "environment-config.sh.tmpl" . }}
 
-
-## cross-distro packages
 # Starship
 sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-# Deno
+
+# Deno toolchain
+{{ if eq .toolchains.deno true }}
 if ! command -v deno &> /dev/null; then
     sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
 else
     deno upgrade
 fi
+{{ end }}
 
 {{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
-# Latest bat release
-latest_url=$(curl -Ls -o /dev/null -w %{url_effective} https://github.com/sharkdp/bat/releases/latest)
-latest_tag="${latest_url##*/v}"
-curl -Lo "/tmp/${latest_tag}_bat.deb" "https://github.com/sharkdp/bat/releases/download/v${latest_tag}/bat_${latest_tag}_amd64.deb"
-sudo dpkg -i "/tmp/${latest_tag}_bat.deb" 
-rm "/tmp/${latest_tag}_bat.deb" 
-
 packages=(
+    bat
 	curl
     jq
 	neovim
-    tmux
     htop
     git
     neofetch
@@ -39,13 +32,10 @@ packages=(
     shellcheck
     ripgrep
     fd-find
-    # Required for building Rust toolchain
-    libpq-dev
-    libssl-dev
-    pkg-config
 )
 
 {{ if (eq .chezmoi.hostname "idris") -}}
+# Automated backups
 packages+=(
     borgmatic
 )
@@ -55,7 +45,9 @@ sudo apt update
 
 sudo apt install -y ${packages[@]}
 
+{{ if eq .automation.update true -}}
 sudo apt upgrade -y
+{{- end }}
 
 {{- end -}}
 
