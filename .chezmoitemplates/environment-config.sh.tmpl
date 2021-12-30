@@ -22,23 +22,40 @@ export GNUPGHOME="$HOME/.local/gnupg"
 # Platform.io configuration
 export PLATFORMIO_CORE_DIR="$HOME/.local/platform.io"
 
+{{ if eq .toolchains.rust true }}
 # Rust configuration
 export RUSTUP_HOME="$HOME/.local/rustup"
 export CARGO_HOME="$HOME/.local/cargo"
+{{ end }}
 
+{{ if eq .toolchains.php true }}
 # PHP configuration
 export COMPOSER_HOME="$HOME/.config/composer"
+{{ end }}
 
+
+{{ if eq .toolchains.node true }}
 # Node configuration
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$HOME/.local/nvm"
 export NPM_PACKAGES="$HOME/.local/node_modules"
+export VUE_CLI_CONFIG_PATH="$HOME/.config/vue"
+{{ end }}
+{{ if eq .toolchains.deno true }}
 export DENO_INSTALL="$HOME/.local/deno"
 export DENO_INSTALL_ROOT="$HOME/.local/bin"
-export VUE_CLI_CONFIG_PATH="$HOME/.config/vue"
+{{ end }}
 
+{{ if eq .toolchains.go true }}
 # Go configuration
 export GOPATH="$HOME/.local/go"
+{{ end }}
+
+{{ if eq .toolchains.elixir true }}
+# Elixir configuration
+export MIX_HOME="$HOME/.local/mix"
+export HEX_HOME="$HOME/.local/hex"
+{{ end }}
 
 # Docker configuration
 {{ if not .wsl }}
@@ -50,3 +67,9 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 export ADOTDIR="$HOME/.local/antigen"
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
 
+# Github creds
+export GITHUB_TOKEN={{ .npmtoken }}
+export GITHUB_USER={{ .github }}
+
+
+{{/* vim: set filetype=zsh: */}}

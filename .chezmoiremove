@@ -18,4 +18,5 @@
 .DS_Store
 .yarn
 .node
+.npm
 .local/share/bin/dump-brewfile

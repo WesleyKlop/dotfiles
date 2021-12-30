@@ -1,15 +1,31 @@
  # Path as an array for readability
  path=(
+ {{ if eq .toolchains.rust true }}
      "$CARGO_HOME/bin"
+ {{ end }}
+
+ {{ if eq .toolchains.php true }}
      "$COMPOSER_HOME/vendor/bin"
+ {{ end }}
+
+ {{ if eq .toolchains.go true }}
+     "$HOME/.local/go/bin"
+ {{ end }}
+
+ {{ if eq .toolchains.deno true }}
+     "$HOME/.local/deno/bin"
+ {{ end }}
+
  {{ if (eq .chezmoi.os "darwin") }}
+     # MacOS specific
      "/opt/homebrew/bin"
      "/usr/local/MacGPG2/bin"
+     "$HOME/.krew/bin"
  {{ end }}
+
+     # Defaults you always want
      "$HOME/.local/share/bin"
      "$HOME/.local/bin"
-     "$HOME/.local/go/bin"
-     "$HOME/.local/deno/bin"
      "/usr/local/sbin"
      "/usr/local/bin"
      "/usr/bin"
