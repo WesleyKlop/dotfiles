@@ -28,3 +28,8 @@ Brewfile
 .ssh/authorized_keys
 .motd_shown
 {{ end }}
+
+{{ if eq .toolchains.node false }}
+.config/angular
+.config/npm
+{{ end }}
