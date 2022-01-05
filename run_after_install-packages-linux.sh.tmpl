@@ -32,6 +32,9 @@ packages=(
     shellcheck
     ripgrep
     fd-find
+{{ if (neq .chezmoi.osRelease.versionID "20.04") }}
+    exa
+{{ end }}
 )
 
 {{ if (eq .chezmoi.hostname "idris") -}}
