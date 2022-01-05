@@ -8,6 +8,9 @@ Brewfile
 .local/share/bin/valet-start
 .local/share/bin/valet-stop
 {{ end }}
+{{ if eq .chezmoi.os "darwin" }}
+.local/share/bin/bat
+{{ end }}
 
 {{ if ne .chezmoi.os "linux" }}
 .motd_shown
