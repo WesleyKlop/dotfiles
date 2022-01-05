@@ -12,4 +12,4 @@ case "$OSTYPE" in
 esac
 
 # Install and apply chezmoi config.
-sh -c "$(curl -fsLS git.io/chezmoi)" -- -b "$HOME/.local/bin" init --apply --ssh wesleyklop
+sh -c "$(curl -fsLS git.io/chezmoi)" -- -b "$HOME/.local/bin" init --apply --ssh WesleyKlop
