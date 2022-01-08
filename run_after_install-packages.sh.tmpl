@@ -7,6 +7,9 @@ set -euo pipefail
 echo "Upgrading chezmoi"
 ~/.local/bin/chezmoi upgrade
 
+echo "Generating cache for antigen"
+zsh -ic 'antigen reset'
+
 echo "Installing vim plugins"
 VIM_BUNDLE_DIR="$HOME/.local/vim/bundle"
 mkdir -p "$VIM_BUNDLE_DIR"

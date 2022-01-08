@@ -7,7 +7,7 @@ set -eufo pipefail
 {{ template "environment-config.sh.tmpl" . }}
 
 # Starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
 
 # Deno toolchain
 {{ if eq .toolchains.deno true }}
