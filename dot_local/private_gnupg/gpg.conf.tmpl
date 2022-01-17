@@ -21,9 +21,11 @@ with-fingerprint
 list-options show-uid-validity
 verify-options show-uid-validity
 
+{{ if (eq .chezmoi.os "darwin") -}}
 # Try to use the GnuPG-Agent. With this option, GnuPG first tries to connect to
 # the agent before it asks for a passphrase.
 use-agent
+{{- end }}
 
 # Tell GnuPG that it's okay to get called by a program instead of a terminal
 auto-key-retrieve
