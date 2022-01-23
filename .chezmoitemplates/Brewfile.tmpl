@@ -26,6 +26,7 @@ brew "exa"
 brew "fzf"
 brew "htop"
 brew "jq"
+brew "yq"
 brew "ripgrep"
 brew "rsync"
 brew "tealdeer"
@@ -49,6 +50,11 @@ brew "php", link: true
 brew "php@7.4", link: false
 brew "php@8.0", link: false
 brew "composer"
+
+# Valet dependencies
+brew "dnsmasq"
+brew "nginx"
+brew "mailhog"
 {{ end }}
 
 # Deno toolchain
@@ -58,7 +64,7 @@ brew "deno"
 
 # Node toolchain
 {{ if eq .toolchains.node true }}
-# Nothing currently
+# Nothing currently, nvm goes through zsh-nvm
 {{ end }}
 
 # Rust toolchain
@@ -71,13 +77,24 @@ brew "rustup-init"
 cask "temurin"
 {{ end }}
 
+# Go toolchain
+{{ if eq .toolchains.go true }}
+brew "go"
+{{ end }}
+
 # Automated backups
 brew "borgbackup"
 cask "vorta"
 
 # Kubernetes
+tap "fluxcd/tap"
 brew "kubernetes-cli"
 brew "krew"
+brew "helm"
+brew "kube-linter"
+brew "kustomize"
+brew "fluxcd/tap/flux"
+brew "sops"
 cask "lens"
 
 # Databases
@@ -87,6 +104,7 @@ brew "postgresql", restart_service: true
 # Password managers
 cask "1password-beta"
 cask "bitwarden"
+mas "1Password for Safari", id: 1569813296
 
 # Communication
 mas "Slack", id: 803453959

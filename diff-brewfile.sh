@@ -3,12 +3,17 @@
 set -euo pipefail
 
 # The actually installed packages
-current_brewfile="$(brew bundle dump --file=- | rg '^\w.*' | sort)"
+current_brewfile="$(brew bundle dump --file=- | rg '^(\w[^,]*)' -or '$1' | sort)"
 # The ones that we have registered in chezmoi
-stored_brewfile="$(chezmoi execute-template < .chezmoitemplates/Brewfile.tmpl | rg '^\w.*' | sort)"
+stored_brewfile="$(chezmoi execute-template < .chezmoitemplates/Brewfile.tmpl | rg '^(\w[^,]*)' -or '$1' | sort)"
 
 
-exec diff -wBayd \
+echo "The following diff excludes linking/service modifiers."
+exec diff \
+  --text \
+  --side-by-side \
+  --ignore-all-space \
+  --ignore-blank-lines \
   --suppress-common-lines \
   --label="current" <(echo "$current_brewfile") \
   --label="stored" <(echo "$stored_brewfile")
