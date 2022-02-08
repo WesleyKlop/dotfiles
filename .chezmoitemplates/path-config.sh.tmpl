@@ -22,6 +22,9 @@
      "/usr/local/MacGPG2/bin"
      "$HOME/.krew/bin"
  {{ end }}
+ {{ if eq .work true }}
+     "$HOME/Projects/Q42/Hue/bin"
+ {{ end }}
 
      # Defaults you always want
      "$HOME/.local/share/bin"
