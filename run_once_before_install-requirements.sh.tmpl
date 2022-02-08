@@ -28,8 +28,10 @@ if [ $IS_MACOS == 1 ]; then
     # Rest of the script can now utilize brew
     eval "$(/opt/homebrew/bin/brew shellenv)"
 
+{{ if eq .chezmoi.arch "arm64" }}
     echo "Installing rosetta..."
     sudo softwareupdate --install-rosetta
+{{ end }}
 fi
 
 echo "Installing gpg if needed..."
