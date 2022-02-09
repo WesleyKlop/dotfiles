@@ -27,3 +27,10 @@
     insteadOf = https://github.com/
 [submodule]
 	recurse = true
+
+[includeIf "gitdir:~/Projects/Q42/"]
+    path = q42.config
+[includeIf "gitdir:~/Projects/InThere/"]
+    path = inthere.config
+[includeIf "gitdir:~/Projects/WesleyKlop/"]
+    path = wesleyklop.config
