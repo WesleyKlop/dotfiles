@@ -18,7 +18,9 @@
 
  {{ if (eq .chezmoi.os "darwin") }}
      # MacOS specific
+   {{ if eq .chezmoi.arch "arm64" }}
      "/opt/homebrew/bin"
+   {{ end }}
      "/usr/local/MacGPG2/bin"
      "$HOME/.krew/bin"
  {{ end }}
