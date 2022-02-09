@@ -97,8 +97,12 @@ brew "sops"
 cask "lens"
 
 # Databases
+{{ if eq .storage.mysql true }}
 brew "mariadb"
+{{ end }}
+{{ if eq .storage.postgres true }}
 brew "postgresql", restart_service: true
+{{ end }}
 
 # Password managers
 cask "1password-beta"

@@ -36,3 +36,7 @@ diff-brewfile.sh
 .config/angular
 .config/npm
 {{ end }}
+
+{{ if eq .storage.sqlite false }}
+.sqliterc
+{{ end }}
