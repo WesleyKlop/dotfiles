@@ -98,6 +98,7 @@ cask "lens"
 
 # Databases
 {{ if eq .storage.mysql true }}
+brew "groonga"
 brew "mariadb"
 {{ end }}
 {{ if eq .storage.postgres true }}
