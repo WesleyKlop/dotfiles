@@ -4,6 +4,7 @@
     {{- $email = promptString "email" -}}
 {{- end -}}
 
+{{- $github := list "name" "token" }}
 {{- $toolchains := list "php" "deno" "node" "rust" "java" "elixir" "go" "kubernetes" }}
 {{- $storage := list "postgres" "sqlite" "mysql" }}
 
@@ -25,7 +26,6 @@ remove = true
 
 [data]
     email = {{ $email | quote }}
-    github = "WesleyKlop"
     personal = {{ $personal }}
     work = {{ $work }}
     wsl = {{ $isWsl }}
@@ -33,6 +33,13 @@ remove = true
     full = "Wesley Klop"
     first = "Wesley"
     last = "Klop"
+[data.github]
+{{- range $github }}
+    {{- if not (hasKey $data.github .) }}
+        {{- $_ := set $data.github . (promptString .) }}
+    {{- end }}
+    {{ . }} = {{ get $data.github . | quote }}
+{{- end }}
 [data.toolchains]
 {{- range $toolchains }}
     {{- if not (hasKey $data.toolchains .) }}
@@ -50,7 +57,7 @@ remove = true
 [data.automation]
     update = false
 [secret]
-    command = "onepassword"
+    command = "op"
 [git]
     autoAdd = true
     autoCommit = false
