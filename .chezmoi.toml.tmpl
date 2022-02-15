@@ -1,11 +1,11 @@
+{{- $data := . }}
 {{- $email := get . "email" -}}
 {{- if not $email -}}
     {{- $email = promptString "email" -}}
 {{- end -}}
-{{- $npmToken := get . "npmtoken" -}}
-{{- if not $npmToken -}}
-    {{- $npmToken = promptString "npm token" -}}
-{{- end -}}
+
+{{- $toolchains := list "php" "deno" "node" "rust" "java" "elixir" "go" "kubernetes" }}
+{{- $storage := list "postgres" "sqlite" "mysql" }}
 
 
 {{- $personal := false -}}
@@ -25,27 +25,28 @@ remove = true
 
 [data]
     email = {{ $email | quote }}
-    npmtoken = {{ $npmToken | quote }}
+    github = "WesleyKlop"
     personal = {{ $personal }}
     work = {{ $work }}
     wsl = {{ $isWsl }}
-    github = "WesleyKlop"
 [data.name]
     full = "Wesley Klop"
     first = "Wesley"
     last = "Klop"
 [data.toolchains]
-    php = true
-    deno = false
-    node = true
-    rust = true
-    java = false
-    elixir = false
-    go = false
+{{- range $toolchains }}
+    {{- if not (hasKey $data.toolchains .) }}
+        {{- $_ := set $data.toolchains . (promptBool .) }}
+    {{- end }}
+    {{ . }} = {{ get $data.toolchains . }}
+{{- end }}
 [data.storage]
-    postgres = false
-    mysql = false
-    sqlite = true
+{{- range $storage }}
+    {{- if not (hasKey $data.storage .) }}
+        {{- $_ := set $data.storage . (promptBool .) }}
+    {{- end }}
+    {{ . }} = {{ get $data.storage . }}
+{{- end }}
 [data.automation]
     update = false
 [secret]
@@ -54,4 +55,4 @@ remove = true
     autoAdd = true
     autoCommit = false
 [gpg]
-    recipient = "wesley19097@gmail.com"
+    recipient = {{ $email | quote }}
