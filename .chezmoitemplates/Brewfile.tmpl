@@ -85,16 +85,16 @@ brew "go"
 brew "borgbackup"
 cask "vorta"
 
+{{ if eq .toolchains.kubernetes true }}
 # Kubernetes
 tap "fluxcd/tap"
+brew "fluxcd/tap/flux"
 brew "kubernetes-cli"
 brew "krew"
 brew "helm"
-brew "kube-linter"
-brew "kustomize"
-brew "fluxcd/tap/flux"
 brew "sops"
 cask "lens"
+{{ end }}
 
 # Databases
 {{ if eq .storage.mysql true }}
