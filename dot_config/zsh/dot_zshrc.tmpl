@@ -22,7 +22,11 @@ zinit load zsh-users/zsh-syntax-highlighting
 zinit load lukechilds/zsh-nvm
 {{- end }}
 
-# Autocompletion
+zinit creinstall -Q "$ZDOTDIR/completions"
+{{- if eq .chezmoi.os "darwin" }}
+zinit creinstall -Q "$(brew --prefix)/share/zsh/site-functions"
+{{- end }}
+
 
 # Command aliases, some are overwritten by oh-my-zsh
 alias dirs="dirs -v"
