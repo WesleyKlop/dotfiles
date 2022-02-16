@@ -25,6 +25,10 @@ fi
 
 vim +PluginInstall +qall
 
+{{ if eq .toolchains.kubernetes true }}
+kubectl krew install ctx ns
+{{ end }}
+
 {{ if eq .toolchains.rust true }}
 echo "Setting up rust"
 
