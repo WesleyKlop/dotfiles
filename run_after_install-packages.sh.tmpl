@@ -7,9 +7,6 @@ set -euo pipefail
 echo "Upgrading chezmoi"
 ~/.local/bin/chezmoi upgrade
 
-echo "Generating cache for antigen"
-zsh -ic 'antigen reset'
-
 echo "Installing vim plugins"
 VIM_BUNDLE_DIR="$HOME/.local/vim/bundle"
 mkdir -p "$VIM_BUNDLE_DIR"
@@ -25,10 +22,10 @@ fi
 
 vim +PluginInstall +qall
 
-{{ if eq .toolchains.kubernetes true }}
-{{ if ne .chezmoi.os "darwin" }}
+{{- if eq .toolchains.kubernetes true }}
+{{- if ne .chezmoi.os "darwin" }}
 (
-  set -x; cd "$(mktemp -d)" &&
+  cd "$(mktemp -d)" &&
   OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
   ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
   KREW="krew-${OS}_${ARCH}" &&
@@ -36,12 +33,12 @@ vim +PluginInstall +qall
   tar zxvf "${KREW}.tar.gz" &&
   ./"${KREW}" install krew
 )
-{{ end }}
+{{- end }}
 
 kubectl krew install ctx ns
-{{ end }}
+{{- end }}
 
-{{ if eq .toolchains.rust true }}
+{{- if eq .toolchains.rust true }}
 echo "Setting up rust"
 
 packages=(
@@ -55,10 +52,10 @@ packages=(
     cargo-generate
 
     modenv
-{{ if ne .chezmoi.os "darwin" }}
+{{- if ne .chezmoi.os "darwin" }}
     du-dust
     tealdeer
-{{ end }}
+{{- end }}
 )
 
 echo "Checking for existing rust installation..."
@@ -78,16 +75,24 @@ else
     $cargo install-update "${packages[@]}"
     $cargo install-update diesel_cli 
 fi
-{{ end }}
+{{- end }}
 
 
-{{ if eq .toolchains.php true }}
+{{- if eq .toolchains.php true }}
 echo "Installing/updating php toolchain..."
 
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 # On macOS, install valet
 composer global require laravel/valet
-{{ end }}
+{{- end }}
 
 composer global update
-{{ end }}
+{{- end }}
+
+# completion
+{{- if eq .toolchains.kubernetes true }}
+kubectl completion zsh > "$ZDOTDIR/completions/_kubectl"
+{{- end }}
+{{- if eq .toolchains.rust true }}
+rustup completions zsh > "$ZDOTDIR/completions/_rustup"
+{{- end }}

@@ -3,15 +3,42 @@ if [[ "$ZPROF" = true ]]; then
   zmodload zsh/zprof
 fi
 
-# Load antigen
-source "$ADOTDIR/antigen.zsh"
+# Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Turbo start shell
+zinit ice wait'!' lucid nocd \
+    atload'!prompt_starship_precmd'
 
 # Plugin config
 export NVM_LAZY_LOAD=${NVM_LAZY_LOAD-true}
 export NVM_AUTO_USE=true
 
-# Zsh plugin configuration
-antigen init "$HOME/.config/antigenrc"
+zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::lib/completion.zsh
+
+zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/gpg-agent/gpg-agent.plugin.zsh
+zinit load zsh-users/zsh-syntax-highlighting
+{{- if eq .toolchains.node true }}
+zinit load lukechilds/zsh-nvm
+{{- end }}
+
+zinit creinstall -Q "$ZDOTDIR/completions"
+{{- if eq .chezmoi.os "darwin" }}
+zinit creinstall -Q "$(brew --prefix)/share/zsh/site-functions"
+{{- end }}
+
+# Other shell config
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushdminus
+setopt extended_history       # record timestamp of command in HISTFILE
+setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt hist_ignore_dups       # ignore duplicated commands history list
+setopt hist_ignore_space      # ignore commands that start with space
+setopt hist_verify            # show command with history expansion to user before running it
+setopt share_history          # share command history data
 
 # Command aliases, some are overwritten by oh-my-zsh
 alias dirs="dirs -v"

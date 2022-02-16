@@ -2,24 +2,12 @@
 
 set -eux
 
-IS_MACOS=0
-IS_LINUX=0
-IS_WINDOWS=0
-echo "Determening os type..."
-case "$OSTYPE" in
-    darwin*)
-        IS_MACOS=1
-    ;;
-    linux*)
-        IS_LINUX=1
-    ;;
-esac
+echo "Installing zinit for zsh..."
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
+mkdir -p "$(dirname $ZINIT_HOME)"
+git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 
-echo "Installing antigen for zsh..."
-mkdir -p "$HOME/.local/antigen"
-curl -o "$HOME/.local/antigen/antigen.zsh" -L https://git.io/antigen
-
-if [ $IS_MACOS == 1 ]; then
+{{ if eq .chezmoi.os "darwin" }}
     echo "Installing brew if needed..."
     if ! command -v brew &> /dev/null; then
         echo "Brew not found... installing!"
@@ -32,15 +20,16 @@ if [ $IS_MACOS == 1 ]; then
     echo "Installing rosetta..."
     sudo softwareupdate --install-rosetta
 {{ end }}
-fi
+{{ end }}
 
 echo "Installing gpg if needed..."
 if ! command -v gpg &> /dev/null; then
-   if [ $IS_MACOS -eq 1 ]; then
+{{ if eq .chezmoi.os "darwin" }}
         brew install --cask gpg-suite 
-   elif [ $IS_LINUX -eq 1 ]; then
+{{ end }}
+{{ if eq .chezmoi.os "linux" }}
         sudo apt install gpg # This should be nicer...
-   fi
+{{ end }}
 fi
 
 echo "Finished!"
