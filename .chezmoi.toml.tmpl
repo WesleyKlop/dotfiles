@@ -8,6 +8,10 @@
 {{- $_ := set $data "storage" (default (dict) (get $data "storage")) -}}
 {{- $_ := set $data "toolchains" (default (dict) (get $data "toolchains")) -}}
 
+{{- $sshagent := "gpg" -}}
+{{- if promptBool "Use 1Password ssh agent" -}}
+{{- $sshagent = "1password" -}}
+{{- end -}}
 
 {{- $github := list "name" "token" }}
 {{- $toolchains := list "php" "deno" "node" "rust" "java" "elixir" "go" "kubernetes" }}
@@ -34,6 +38,7 @@ remove = true
     personal = {{ $personal }}
     work = {{ $work }}
     wsl = {{ $isWsl }}
+    sshagent = {{ $sshagent | quote }}
 [data.name]
     full = "Wesley Klop"
     first = "Wesley"
