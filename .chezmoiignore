@@ -1,6 +1,7 @@
 README.md
 install.sh
 diff-brewfile.sh
+inc/
 
 {{ if ne .chezmoi.os "darwin" }}
 .local/share/bin/clean-xcode

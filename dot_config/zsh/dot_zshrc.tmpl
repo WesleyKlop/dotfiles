@@ -12,7 +12,7 @@ zinit ice wait'!' lucid nocd \
 
 # Plugin config
 export NVM_LAZY_LOAD=${NVM_LAZY_LOAD-true}
-export NVM_AUTO_USE=true
+export NVM_AUTO_USE=${NVM_AUTO_USE-true}
 
 zinit snippet OMZ::lib/git.zsh
 zinit snippet OMZ::lib/completion.zsh
@@ -30,31 +30,10 @@ zinit creinstall -Q "$(brew --prefix)/share/zsh/site-functions"
 {{- end }}
 
 # Other shell config
-setopt auto_pushd
-setopt pushd_ignore_dups
-setopt pushdminus
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt share_history          # share command history data
+{{- include "inc/opts.zsh" }}
 
 # Command aliases, some are overwritten by oh-my-zsh
-alias dirs="dirs -v"
-
-alias artisan="php artisan"
-
-alias top="htop"
-
-alias diff='diff --color=auto'
-
-alias ip='ip -color=auto'
-
-alias ls='exa' 
-alias la="exa -lah"
-
-alias grep='rg'
+{{- include "inc/aliases.zsh" }}
 
 # Start starship
 eval "$(starship init zsh)"
