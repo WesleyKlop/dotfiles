@@ -76,5 +76,15 @@ export HISTFILE="$XDG_STATE_HOME/zsh_history"
 export GITHUB_TOKEN={{ .github.token }}
 export GITHUB_USER={{ .github.name }}
 
+# SSH agent configuration
+{{- if eq .sshagent "1password" }}
+{{- if eq .chezmoi.os "darwin" }}
+export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+{{- end }}
+{{- end }}
+
 
 {{/* vim: set filetype=zsh: */}}
