@@ -40,6 +40,7 @@ export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$HOME/.local/nvm"
 export NPM_PACKAGES="$HOME/.local/node_modules"
 export VUE_CLI_CONFIG_PATH="$HOME/.config/vue"
+export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
 {{ end }}
 {{ if eq .toolchains.deno true }}
 export DENO_INSTALL="$HOME/.local/deno"

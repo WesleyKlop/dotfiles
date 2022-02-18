@@ -1,5 +1,6 @@
 .bash_history
 .bashrc
+.node_repl_history
 .cargo
 .composer
 .gitconfig
