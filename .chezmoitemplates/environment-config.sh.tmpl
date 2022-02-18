@@ -85,7 +85,14 @@ export GITHUB_USER={{ .github.name }}
 export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 {{- end }}
 {{- if eq .chezmoi.os "linux" }}
+{{- if eq .wsl true }}
+mkdir -p "/tmp/wsl-ssh"
+export SSH_AUTH_SOCK="/tmp/wsl-ssh/agent.sock"
+rm -f "$SSH_AUTH_SOCK"
+( setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"\"/mnt/c/tools/wsl-ssh-agent/npiperelay.exe\" -ei -s //./pipe/openssh-ssh-agent",nofork & ) > /dev/null 2>&1
+{{- else }}
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+{{- end }}
 {{- end }}
 {{- end }}
 
