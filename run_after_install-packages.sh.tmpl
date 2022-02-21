@@ -96,3 +96,13 @@ kubectl completion zsh > "$ZDOTDIR/completions/_kubectl"
 {{- if eq .toolchains.rust true }}
 rustup completions zsh > "$ZDOTDIR/completions/_rustup"
 {{- end }}
+
+zsh -ic "$(cat <<- ZSH
+{{- if eq .chezmoi.os "darwin" }}
+zinit creinstall -Q "$(brew --prefix)/share/zsh/site-functions"
+{{- end }}
+zinit creinstall -Q "$ZDOTDIR/completions"
+ZSH
+)"
+
+

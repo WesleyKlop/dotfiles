@@ -24,11 +24,6 @@ zinit load zsh-users/zsh-syntax-highlighting
 zinit load lukechilds/zsh-nvm
 {{- end }}
 
-zinit creinstall -Q "$ZDOTDIR/completions"
-{{- if eq .chezmoi.os "darwin" }}
-zinit creinstall -Q "$(brew --prefix)/share/zsh/site-functions"
-{{- end }}
-
 # Other shell config
 {{- include "inc/opts.zsh" }}
 
