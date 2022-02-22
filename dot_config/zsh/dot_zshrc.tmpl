@@ -14,15 +14,17 @@ zinit ice wait'!' lucid nocd \
 export NVM_LAZY_LOAD=${NVM_LAZY_LOAD-true}
 export NVM_AUTO_USE=${NVM_AUTO_USE-true}
 
-zinit snippet OMZ::lib/git.zsh
-zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZL::git.zsh
+zinit snippet OMZL::completion.zsh
 
-zinit snippet OMZ::plugins/git/git.plugin.zsh
-zinit snippet OMZ::plugins/gpg-agent/gpg-agent.plugin.zsh
-zinit load zsh-users/zsh-syntax-highlighting
+zinit snippet OMZP::git
+zinit snippet OMZP::gpg-agent
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 {{- if eq .toolchains.node true }}
-zinit load lukechilds/zsh-nvm
+    lukechilds/zsh-nvm \
 {{- end }}
+    zsh-users/zsh-syntax-highlighting
+
 
 # Other shell config
 {{- include "inc/opts.zsh" }}
