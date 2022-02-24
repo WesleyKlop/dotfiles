@@ -13,6 +13,10 @@
 	diff = auto
 [commit]
 	gpgsign = true
+{{- if eq .chezmoi.os "windows" }}
+[gpg]
+    program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
+{{- end }}
 [push]
     default = simple
     rebase = false

@@ -1,5 +1,6 @@
 README.md
 install.sh
+install.ps1
 diff-brewfile.sh
 inc/
 
@@ -18,14 +19,21 @@ inc/
 {{ end }}
 
 {{ if ne .chezmoi.os "windows" }}
-{{/* Windows specific files here */}}
+*.ps1
 {{ else }}
-.tmux.conf
-.config/zsh/.zshrc
-.config/zsh/.zprofile
-.gnupg
+.local/gnupg
+.local/share/bin
+.local/state
+.zshenv
+.config/zsh
 .config/starship.toml
-.config/vim/.vimrc
+.config/bat
+.config/tealdeer
+.config/tmux
+.config/ideavim
+.config/vim
+.config/vue
+*.sh
 {{ end }}
 
 {{ if ne .chezmoi.hostname "idris" }}
@@ -35,6 +43,7 @@ inc/
 {{ if eq .toolchains.node false }}
 .config/angular
 .config/npm
+.config/vue
 {{ end }}
 
 {{ if eq .storage.sqlite false }}
