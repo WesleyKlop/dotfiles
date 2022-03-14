@@ -7,19 +7,6 @@ set -euo pipefail
 echo "Upgrading chezmoi"
 ~/.local/bin/chezmoi upgrade
 
-echo "Installing vim plugins"
-VIM_BUNDLE_DIR="$HOME/.local/vim/bundle"
-mkdir -p "$VIM_BUNDLE_DIR"
-
-if [ ! -d "$VIM_BUNDLE_DIR/Vundle.vim" ]; then
-    # Vundle for vim plugins
-    git clone https://github.com/VundleVim/Vundle.vim.git "$VIM_BUNDLE_DIR/Vundle.vim"
-else
-    pushd "$VIM_BUNDLE_DIR/Vundle.vim"
-    git pull
-    popd
-fi
-
 vim +PluginInstall +qall
 
 {{- if eq .toolchains.kubernetes true }}
