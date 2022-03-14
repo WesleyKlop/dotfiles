@@ -31,11 +31,14 @@ inc/
 
 {{ if ne .chezmoi.hostname "idris" }}
 .motd_shown
+{{ else }}
+.config/ideavim
 {{ end }}
 
 {{ if eq .toolchains.node false }}
 .config/angular
 .config/npm
+.config/vue
 {{ end }}
 
 {{ if eq .storage.sqlite false }}
