@@ -90,6 +90,7 @@ composer global update
 {{- end }}
 
 # completion
+chezmoi completion zsh > "$ZDOTDIR/completions/_chezmoi"
 {{- if eq .toolchains.kubernetes true }}
 kubectl completion zsh > "$ZDOTDIR/completions/_kubectl"
 {{- end }}
