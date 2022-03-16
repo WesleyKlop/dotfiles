@@ -86,24 +86,19 @@ export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/
 {{- end }}
 {{- if eq .chezmoi.os "linux" }}
 {{- if eq .wsl true }}
-export SSH_AUTH_SOCK="/tmp/wsl-ssh/agent.sock"
+export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 ( 
-  mkdir -p /tmp/wsl-ssh
-  if [ -f /tmp/wsl-ssh/agent.pid ]; then
-      kill "$(cat /tmp/wsl-ssh/agent.pid)"
-      rm -f /tmp/wsl-ssh/agent.pid
-      rm -f "$SSH_AUTH_SOCK"
+  if ! ss -ax | grep -q "$SSH_AUTH_SOCK"; then
+    rm -f "$SSH_AUTH_SOCK"
+    setsid --fork socat \
+      UNIX-LISTEN:$SSH_AUTH_SOCK,fork \
+      EXEC:"\"/mnt/c/tools/wsl-ssh-agent/npiperelay.exe\" -ei -s //./pipe/openssh-ssh-agent",nofork
   fi
-  setsid socat \
-    UNIX-LISTEN:$SSH_AUTH_SOCK,fork \
-    EXEC:"\"/mnt/c/tools/wsl-ssh-agent/npiperelay.exe\" -ei -s //./pipe/openssh-ssh-agent",nofork & 
-  echo "$!" > /tmp/wsl-ssh/agent.pid
 ) >& /dev/null
 {{- else }}
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 {{- end }}
 {{- end }}
 {{- end }}
-
 
 {{/* vim: set filetype=zsh: */}}

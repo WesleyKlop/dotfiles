@@ -20,7 +20,7 @@ set -eux
 echo "Installing gpg if needed..."
 if ! command -v gpg &> /dev/null; then
 {{ if eq .chezmoi.os "darwin" }}
-        brew install --cask gpg-suite 
+        brew install --cask gpg-suite-no-mail
 {{ end }}
 {{ if eq .chezmoi.os "linux" }}
         sudo apt install gpg # This should be nicer...
