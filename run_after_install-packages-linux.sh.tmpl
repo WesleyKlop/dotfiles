@@ -6,8 +6,30 @@ set -eufo pipefail
 # This script relies on environment so don't rely on the shell to have the latest version
 {{ template "environment-config.sh.tmpl" . }}
 
-# Starship
-sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
+packages=(
+    ripgrep
+    bat
+    curl
+    jq
+    neovim
+    neofetch
+    shellcheck
+)
+
+{{ if (eq .chezmoi.osRelease.id "arch") -}}
+packages+=(
+    starship
+    exa
+    fd
+{{ if eq .toolchains.deno true }}
+    deno
+{{ end }}
+)
+
+sudo pacman -Su --needed ${packages[@]}
+{{ end -}}
+
+{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
 
 # Deno toolchain
 {{ if eq .toolchains.deno true }}
@@ -18,34 +40,24 @@ else
 fi
 {{ end }}
 
-{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
-packages=(
-    bat
-	curl
-    jq
-	neovim
-    htop
-    git
-    neofetch
+packages+=(
     gpg
     gpg-agent
-    shellcheck
-    ripgrep
     fd-find
-{{ if (ne .chezmoi.osRelease.versionID "20.04") }}
+{{ if (ne .chezmoi.osRelease.versionID "20.04") -}}
     exa
 {{ end }}
 )
 
 {{ if (eq .chezmoi.hostname "idris") -}}
-# Automated backups
 packages+=(
     borgmatic
 )
 {{- end }}
 
-sudo apt update
+snap install starship
 
+sudo apt update
 sudo apt install -y ${packages[@]}
 
 {{ if eq .automation.update true -}}
