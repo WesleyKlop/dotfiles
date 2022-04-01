@@ -84,6 +84,9 @@ kubectl completion zsh > "$ZDOTDIR/completions/_kubectl"
 {{- if eq .toolchains.rust true }}
 rustup completions zsh > "$ZDOTDIR/completions/_rustup"
 {{- end }}
+if command -v op; then
+  op completion zsh > "$ZDOTDIR/completions/_op"
+fi
 
 zsh -ic "$(cat <<- ZSH
 {{- if eq .chezmoi.os "darwin" }}
