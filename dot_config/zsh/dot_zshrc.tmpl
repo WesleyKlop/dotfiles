@@ -23,7 +23,8 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 {{- if eq .toolchains.node true }}
     lukechilds/zsh-nvm \
 {{- end }}
-    zsh-users/zsh-syntax-highlighting 
+    zsh-users/zsh-syntax-highlighting \
+    ajeetdsouza/zoxide
 
 zinit wait lucid atload"
     bindkey \"\$terminfo[kcuu1]\" history-substring-search-up; 
