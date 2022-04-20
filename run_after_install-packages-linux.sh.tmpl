@@ -14,6 +14,7 @@ packages=(
     neovim
     neofetch
     shellcheck
+    fzf
 )
 
 {{ if (eq .chezmoi.osRelease.id "arch") -}}
@@ -21,6 +22,7 @@ packages+=(
     starship
     exa
     fd
+    zoxide
 {{ if eq .toolchains.deno true }}
     deno
 {{ end }}
@@ -46,6 +48,7 @@ packages+=(
     fd-find
 {{ if (ne .chezmoi.osRelease.versionID "20.04") -}}
     exa
+    zoxide
 {{ end }}
 )
 
@@ -55,7 +58,11 @@ packages+=(
 )
 {{- end }}
 
-snap install starship
+if command -v snap &> /dev/null; then
+    snap install starship
+else
+    sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
+fi
 
 sudo apt update
 sudo apt install -y ${packages[@]}
