@@ -22,52 +22,52 @@ export GNUPGHOME="$HOME/.local/gnupg"
 # Platform.io configuration
 export PLATFORMIO_CORE_DIR="$HOME/.local/platform.io"
 
-{{ if eq .toolchains.rust true }}
+{{- if eq .toolchains.rust true }}
 # Rust configuration
 export RUSTUP_HOME="$HOME/.local/rustup"
 export CARGO_HOME="$HOME/.local/cargo"
-{{ end }}
+{{- end }}
 
-{{ if eq .toolchains.php true }}
+{{- if eq .toolchains.php true }}
 # PHP configuration
 export COMPOSER_HOME="$HOME/.config/composer"
-{{ end }}
+{{- end }}
 
 
-{{ if eq .toolchains.node true }}
+{{- if eq .toolchains.node true }}
 # Node configuration
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export NVM_DIR="$HOME/.local/nvm"
 export NPM_PACKAGES="$HOME/.local/node_modules"
 export VUE_CLI_CONFIG_PATH="$HOME/.config/vue"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
-{{ end }}
-{{ if eq .toolchains.deno true }}
+{{- end }}
+{{- if eq .toolchains.deno true }}
 export DENO_INSTALL="$HOME/.local/deno"
 export DENO_INSTALL_ROOT="$HOME/.local/bin"
-{{ end }}
+{{- end }}
 
-{{ if eq .toolchains.go true }}
+{{- if eq .toolchains.go true }}
 # Go configuration
 export GOPATH="$HOME/.local/go"
-{{ end }}
+{{- end }}
 
-{{ if eq .toolchains.elixir true }}
+{{- if eq .toolchains.elixir true }}
 # Elixir configuration
 export MIX_HOME="$HOME/.local/mix"
 export HEX_HOME="$HOME/.local/hex"
-{{ end }}
+{{- end }}
 
 # Docker configuration
-{{ if not .wsl }}
+{{- if not .wsl }}
 export DOCKER_CONFIG="$HOME/.config/docker"
-{{ end }}
+{{- end }}
 export COMPOSE_DOCKER_CLI_BUILD=1
 
-{{ if eq .toolchains.kubernetes true }}
+{{- if eq .toolchains.kubernetes true }}
 # Kubernetes configuration
 export KREW_ROOT="$HOME/.local/krew"
-{{ end }}
+{{- end }}
 
 # Shell configuration
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"

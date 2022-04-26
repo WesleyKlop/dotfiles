@@ -1,32 +1,32 @@
  # Path as an array for readability
  path=(
- {{ if eq .toolchains.rust true }}
+ {{- if eq .toolchains.rust true }}
      "$CARGO_HOME/bin"
- {{ end }}
+ {{- end }}
 
- {{ if eq .toolchains.php true }}
+ {{- if eq .toolchains.php true }}
      "$COMPOSER_HOME/vendor/bin"
- {{ end }}
+ {{- end }}
 
- {{ if eq .toolchains.go true }}
+ {{- if eq .toolchains.go true }}
      "$HOME/.local/go/bin"
- {{ end }}
+ {{- end }}
 
- {{ if eq .toolchains.deno true }}
+ {{- if eq .toolchains.deno true }}
      "$HOME/.local/deno/bin"
- {{ end }}
+ {{- end }}
 
- {{ if (eq .chezmoi.os "darwin") }}
+ {{- if (eq .chezmoi.os "darwin") }}
      # MacOS specific
-   {{ if eq .chezmoi.arch "arm64" }}
+   {{- if eq .chezmoi.arch "arm64" }}
      "/opt/homebrew/bin"
-   {{ end }}
+   {{- end }}
      "/usr/local/MacGPG2/bin"
      "$HOME/.krew/bin"
- {{ end }}
- {{ if eq .work true }}
+ {{- end }}
+ {{- if eq .work true }}
      "$HOME/Projects/Q42/Hue/bin"
- {{ end }}
+ {{- end }}
 
      # Kubernetes
      "$KREW_ROOT/bin"

@@ -4,7 +4,7 @@
 set -eufo pipefail
 
 # This script relies on environment so don't rely on the shell to have the latest version
-{{ template "environment-config.sh.tmpl" . }}
+{{- template "environment-config.sh.tmpl" . }}
 
 packages=(
     ripgrep
@@ -17,55 +17,81 @@ packages=(
     fzf
 )
 
-{{ if (eq .chezmoi.osRelease.id "arch") -}}
+{{- if (eq .chezmoi.osRelease.id "arch") }}
 packages+=(
     starship
     exa
     fd
     zoxide
-{{ if eq .toolchains.deno true }}
+{{- if eq .toolchains.deno true }}
     deno
-{{ end }}
+{{- end }}
 )
 
 sudo pacman -Su --needed ${packages[@]}
-{{ end -}}
+{{- end }}
 
-{{ if (eq .chezmoi.osRelease.id "debian" "ubuntu") -}}
+{{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
+
+# Kubernetes tools
+{{- if eq .toolchains.kubernetes true }}
+keyring="/usr/share/keyrings/kubernetes-archive-keyring.gpg"
+if [ ! -f "$keyring" ]; then
+    sudo curl -fsSLo "$keyring" https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    echo "deb [signed-by=$keyring] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+fi
+packages+=(
+    kubectl
+)
+{{- end }}
+
+# Rust dependencies
+{{- if eq .toolchains.rust true }}
+packages+=(
+    build-essential
+    pkg-config
+    libssl-dev
+    libpq-dev
+)
+{{- end }}
 
 # Deno toolchain
-{{ if eq .toolchains.deno true }}
+{{- if eq .toolchains.deno true }}
 if ! command -v deno &> /dev/null; then
     sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
 else
     deno upgrade
 fi
-{{ end }}
+{{- end }}
 
 packages+=(
     gpg
     gpg-agent
     fd-find
-{{ if (ne .chezmoi.osRelease.versionID "20.04") -}}
+{{- if (ne .chezmoi.osRelease.versionID "20.04") }}
     exa
     zoxide
-{{ end }}
+{{- end }}
 )
 
-{{ if (eq .chezmoi.hostname "idris") -}}
+{{- if (eq .chezmoi.hostname "idris") }}
 packages+=(
     borgmatic
 )
 {{- end }}
 
-if command -v snap &> /dev/null; then
-    snap install starship
-else
-    sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
-fi
+{{- if eq .wsl false }}
+snap install starship
+{{- else }}
+sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
+{{- end }}
 
 sudo apt update
-sudo apt install -y ${packages[@]}
+sudo apt install \
+    --no-install-recommends \
+    --no-install-suggests \
+    -y \
+    ${packages[@]}
 
 {{ if eq .automation.update true -}}
 sudo apt upgrade -y
