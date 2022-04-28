@@ -2,11 +2,6 @@
 
 set -eux
 
-echo "Installing zinit for zsh..."
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
-mkdir -p "$(dirname $ZINIT_HOME)"
-git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-
 {{ if eq .chezmoi.os "darwin" }}
     echo "Installing brew if needed..."
     if ! command -v brew &> /dev/null; then
@@ -25,7 +20,7 @@ git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 echo "Installing gpg if needed..."
 if ! command -v gpg &> /dev/null; then
 {{ if eq .chezmoi.os "darwin" }}
-        brew install --cask gpg-suite 
+        brew install --cask gpg-suite-no-mail
 {{ end }}
 {{ if eq .chezmoi.os "linux" }}
         sudo apt install gpg # This should be nicer...

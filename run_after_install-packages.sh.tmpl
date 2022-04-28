@@ -7,19 +7,6 @@ set -euo pipefail
 echo "Upgrading chezmoi"
 ~/.local/bin/chezmoi upgrade
 
-echo "Installing vim plugins"
-VIM_BUNDLE_DIR="$HOME/.local/vim/bundle"
-mkdir -p "$VIM_BUNDLE_DIR"
-
-if [ ! -d "$VIM_BUNDLE_DIR/Vundle.vim" ]; then
-    # Vundle for vim plugins
-    git clone https://github.com/VundleVim/Vundle.vim.git "$VIM_BUNDLE_DIR/Vundle.vim"
-else
-    pushd "$VIM_BUNDLE_DIR/Vundle.vim"
-    git pull
-    popd
-fi
-
 vim +PluginInstall +qall
 
 {{- if eq .toolchains.kubernetes true }}
@@ -53,7 +40,6 @@ packages=(
 
     modenv
 {{- if ne .chezmoi.os "darwin" }}
-    du-dust
     tealdeer
 {{- end }}
 )
@@ -90,12 +76,16 @@ composer global update
 {{- end }}
 
 # completion
+chezmoi completion zsh > "$ZDOTDIR/completions/_chezmoi"
 {{- if eq .toolchains.kubernetes true }}
 kubectl completion zsh > "$ZDOTDIR/completions/_kubectl"
 {{- end }}
 {{- if eq .toolchains.rust true }}
 rustup completions zsh > "$ZDOTDIR/completions/_rustup"
 {{- end }}
+if command -v op; then
+  op completion zsh > "$ZDOTDIR/completions/_op"
+fi
 
 zsh -ic "$(cat <<- ZSH
 {{- if eq .chezmoi.os "darwin" }}

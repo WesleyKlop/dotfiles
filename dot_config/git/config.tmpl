@@ -1,40 +1,49 @@
 [user]
-	name = {{ .name.full }}
-	email = {{ .email }}
-	signingkey = A6F6DB7CB772F1A0
+    name = {{ .name.full }}
+    email = {{ .email }}
+    signingkey = A6F6DB7CB772F1A0
 [core]
-	editor = vim
-	excludesfile = ~/.config/git/gitignore
-	autocrlf = input
+    editor = vim
+    excludesfile = ~/.config/git/gitignore
+    autocrlf = input
+{{- if eq .chezmoi.os "darwin" }}
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
+{{- end }}
 [color]
-	status = auto
-	branch = auto
-	interactive = auto
-	diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    diff = auto
 [commit]
-	gpgsign = true
+    gpgsign = true
 {{- if eq .chezmoi.os "windows" }}
 [core]
-    sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.exe'
+    sshCommand = C:\\Program Files\\OpenSSH-Win64\\ssh.exe
 [gpg]
     program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
 {{- end }}
 [push]
     default = simple
     rebase = false
-[pull]
-# 	rebase = false
 [alias]
     cleanup = "!git branch --merged | rg -v '^\\*|master|develop|main|test|production' | xargs -n1 -r git branch -d"
     update = "!git checkout develop && git pull && git cleanup"
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [submodule]
-	recurse = true
+    recurse = true
 
-[includeIf "gitdir:~/Projects/Q42/"]
+[includeIf "gitdir:~/Developer/Q42/"]
     path = q42.config
-[includeIf "gitdir:~/Projects/InThere/"]
+[includeIf "gitdir:~/Developer/InThere/"]
     path = inthere.config
-[includeIf "gitdir:~/Projects/WesleyKlop/"]
+[includeIf "gitdir:~/Developer/WesleyKlop/"]
     path = wesleyklop.config

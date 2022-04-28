@@ -38,6 +38,8 @@ inc/
 
 {{ if ne .chezmoi.hostname "idris" }}
 .motd_shown
+{{ else }}
+.config/ideavim
 {{ end }}
 
 {{ if eq .toolchains.node false }}
