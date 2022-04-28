@@ -99,7 +99,7 @@ packages+=(
 {{- end }}
 
 {{- if eq .wsl false }}
-snap install starship
+sudo snap install starship
 {{- else }}
 sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
 {{- end }}
