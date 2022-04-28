@@ -75,5 +75,6 @@ remove = true
     recipient = {{ $email | quote }}
 {{- if eq .chezmoi.os "windows" }}
 [interpreters.ps1]
-arguments = "-NoLogo -ExecutionPolicy Unrestricted"
+    command = "pwsh"
+    arguments = ["-NoLogo"]
 {{- end }}
