@@ -3,3 +3,5 @@ $InstallScript = [System.Text.Encoding]::UTF8.GetString($Response.Content)
 
 $params = "-BinDir $HOME/.local/bin"
 Invoke-Expression $InstallScript
+
+echo test
