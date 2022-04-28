@@ -3,6 +3,9 @@ show_always=true
 
 [hostname]
 ssh_only=false
+{{- if eq .wsl true }}
+disabled=true
+{{- end }}
 
 [conda]
 symbol = " "
@@ -39,3 +42,11 @@ disabled = true
 
 [kubernetes]
 disabled = false
+[kubernetes.context_aliases]
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+
+[env_var.WSL_DISTRO_NAME]
+disabled = false
+symbol = ""
+format = "using [$env_value]($style) "
+style = "bright-purple"
