@@ -16,6 +16,10 @@ packages=(
     fzf
 )
 
+{{- if eq .wsl true }}
+packages+=(socat)
+{{- end }}
+
 {{- if (eq .chezmoi.osRelease.id "arch") }}
 packages+=(
     shellcheck
