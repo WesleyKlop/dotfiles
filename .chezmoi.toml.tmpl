@@ -73,3 +73,7 @@ remove = true
     autoCommit = false
 [gpg]
     recipient = {{ $email | quote }}
+{{- if eq .chezmoi.os "windows" }}
+[interpreters.ps1]
+arguments = "-NoLogo -ExecutionPolicy Unrestricted"
+{{- end }}
