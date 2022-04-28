@@ -14,6 +14,8 @@
 [commit]
 	gpgsign = true
 {{- if eq .chezmoi.os "windows" }}
+[core]
+    sshCommand = 'C:\\Program Files\\OpenSSH-Win64\\ssh.exe'
 [gpg]
     program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe
 {{- end }}
