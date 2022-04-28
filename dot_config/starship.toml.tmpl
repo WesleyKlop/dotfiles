@@ -7,11 +7,32 @@ ssh_only=false
 disabled=true
 {{- end }}
 
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
 [conda]
 symbol = " "
 
 [dart]
 symbol = " "
+
+[directory]
+read_only = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
 
 [git_branch]
 symbol = " "
@@ -19,20 +40,38 @@ symbol = " "
 [golang]
 symbol = " "
 
+[haskell]
+symbol = " "
+
 [hg_branch]
 symbol = " "
+
+[java]
+symbol = " "
 
 [julia]
 symbol = " "
 
-[perl]
-symbol = " "
+[memory_usage]
+symbol = " "
 
-[php]
-symbol = " "
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
 
 [python]
-symbol = " "
+symbol = " "
+
+[spack]
+symbol = "🅢 "
 
 [rust]
 symbol = " "
@@ -41,7 +80,9 @@ symbol = " "
 disabled = true
 
 [kubernetes]
+symbol = "ﴱ "
 disabled = false
+format = "[$symbol$context( )]($style) in "
 [kubernetes.context_aliases]
 "gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
 
