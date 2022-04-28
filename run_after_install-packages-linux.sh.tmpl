@@ -13,12 +13,12 @@ packages=(
     jq
     neovim
     neofetch
-    shellcheck
     fzf
 )
 
 {{- if (eq .chezmoi.osRelease.id "arch") }}
 packages+=(
+    shellcheck
     starship
     exa
     fd
@@ -31,7 +31,21 @@ packages+=(
 sudo pacman -Su --needed ${packages[@]}
 {{- end }}
 
+{{- if (eq .chezmoi.osRelease.id "fedora") }}
+packages+=(
+	starship
+	exa
+	fd-find
+	zoxide
+	ShellCheck
+)
+sudo dnf install -y ${packages[@]}
+{{- end }}
+
 {{- if (eq .chezmoi.osRelease.id "debian" "ubuntu") }}
+packages+=(
+	shellcheck
+)
 
 # Kubernetes tools
 {{- if eq .toolchains.kubernetes true }}

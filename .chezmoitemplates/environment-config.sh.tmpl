@@ -70,6 +70,7 @@ export KREW_ROOT="$HOME/.local/krew"
 {{- end }}
 
 # Shell configuration
+export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
 export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
 
