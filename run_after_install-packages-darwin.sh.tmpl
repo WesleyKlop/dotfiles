@@ -10,5 +10,9 @@ brew bundle install \
   --file=/dev/stdin <<EOF
 {{ template "Brewfile.tmpl" . }}
 EOF
+
+# Tell iterm2 to use our configuration
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$XDG_CONFIG_HOME/iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 {{ end -}}
 {{/* vim: set filetype=bash: */}}
