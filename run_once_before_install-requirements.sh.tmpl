@@ -27,4 +27,12 @@ if ! command -v gpg &> /dev/null; then
 {{ end }}
 fi
 
+echo "Importing gpg key from 1Password..."
+
+{{- $VAULT_ID := "c4prpuzlxrox5pjph36zqnnvge" -}}
+{{- $ACCOUNT_ID := "GIFANVXR5RGWZE5T2QIURRYYPE" -}}
+cat <<'GPG' | gpg --import
+{{ onepasswordDocument "53jcpexmdvfqrgzc4l4nqqk2hi" $VAULT_ID $ACCOUNT_ID }}
+GPG
+
 echo "Finished!"
