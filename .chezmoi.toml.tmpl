@@ -1,22 +1,23 @@
 {{- $data := . }}
 {{- $email := get . "email" -}}
 {{- if not $email -}}
-    {{- $email = promptString "email" -}}
+{{-     $email = promptString "email" -}}
 {{- end -}}
 
 {{- $_ := set $data "github" (default (dict) (get $data "github")) -}}
+{{- $_ := set $data "npm" (default (dict) (get $data "npm")) -}}
 {{- $_ := set $data "storage" (default (dict) (get $data "storage")) -}}
 {{- $_ := set $data "toolchains" (default (dict) (get $data "toolchains")) -}}
 
 {{- $sshagent := "gpg" -}}
 {{- if promptBool "Use 1Password ssh agent" -}}
-{{- $sshagent = "1password" -}}
+{{-     $sshagent = "1password" -}}
 {{- end -}}
 
-{{- $github := list "name" "token" }}
+{{- $github := list "name" "tokenname" }}
+{{- $npm := list "tokenname" }}
 {{- $toolchains := list "php" "deno" "node" "rust" "java" "elixir" "go" "kubernetes" }}
 {{- $storage := list "postgres" "sqlite" "mysql" }}
-
 
 {{- $personal := false -}}
 {{- $work := false -}}
@@ -26,9 +27,9 @@
 {{-       $isWsl = true -}}
 {{-    end -}}
 {{- end -}}
-{{- if eq .chezmoi.hostname "KLOPWLT01" -}}
-{{-    $work = true -}}
-{{- end -}}
+
+{{- $VAULT_ID := "c4prpuzlxrox5pjph36zqnnvge" -}}
+{{- $ACCOUNT_ID := "GIFANVXR5RGWZE5T2QIURRYYPE" -}}
 
 encryption = "gpg"
 remove = true
@@ -36,7 +37,6 @@ remove = true
 [data]
     email = {{ $email | quote }}
     personal = {{ $personal }}
-    work = {{ $work }}
     wsl = {{ $isWsl }}
     sshagent = {{ $sshagent | quote }}
 [data.name]
@@ -50,6 +50,15 @@ remove = true
     {{- end }}
     {{ . }} = {{ get $data.github . | quote }}
 {{- end }}
+    token = {{ (get (onepasswordItemFields "zq2crwzfldgqolsqkfou354ob4" $VAULT_ID $ACCOUNT_ID) $data.github.tokenname).value | quote }}
+[data.npm]
+{{- range $npm }}
+    {{- if not (hasKey $data.npm .) }}
+        {{- $_ := set $data.npm . (promptString .) }}
+    {{- end }}
+    {{ . }} = {{ get $data.npm . | quote }}
+{{- end }}
+    token = {{ (get (onepasswordItemFields "zafsxtaw5fffpmohbn4olf7swq" $VAULT_ID $ACCOUNT_ID) $data.npm.tokenname).value | quote }}
 [data.toolchains]
 {{- range $toolchains }}
     {{- if not (hasKey $data.toolchains .) }}
