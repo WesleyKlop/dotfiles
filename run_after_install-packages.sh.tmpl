@@ -10,7 +10,7 @@ echo "Upgrading chezmoi"
 vim +PluginInstall +qall
 
 {{- if eq .toolchains.kubernetes true }}
-{{- if ne .chezmoi.os "darwin" }}
+{{-     if ne .chezmoi.os "darwin" }}
 (
   cd "$(mktemp -d)"
   KREW="krew-{{ .chezmoi.os }}_{{ .chezmoi.arch }}"
@@ -18,7 +18,7 @@ vim +PluginInstall +qall
   tar zxvf "${KREW}.tar.gz"
   ./"${KREW}" install krew
 )
-{{- end }}
+{{-     end }}
 
 kubectl krew install ctx ns
 {{- end }}
@@ -32,14 +32,6 @@ packages=(
     cargo-edit
     cargo-hack
     cargo-outdated
-    cargo-readme
-    cargo-update
-    cargo-generate
-
-    modenv
-{{- if ne .chezmoi.os "darwin" }}
-    tealdeer
-{{- end }}
 )
 
 echo "Checking for existing rust installation..."
@@ -65,10 +57,10 @@ fi
 {{- if eq .toolchains.php true }}
 echo "Installing/updating php toolchain..."
 
-{{- if eq .chezmoi.os "darwin" }}
+{{-     if eq .chezmoi.os "darwin" }}
 # On macOS, install valet
 composer global require laravel/valet
-{{- end }}
+{{-     end }}
 
 composer global update
 {{- end }}
