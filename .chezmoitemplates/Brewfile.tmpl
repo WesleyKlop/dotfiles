@@ -98,13 +98,15 @@ cask "lens"
 {{ end }}
 
 # Databases
-{{ if eq .storage.mysql true }}
+{{- if eq .storage.mysql true }}
 brew "groonga"
 brew "mariadb"
-{{ end }}
-{{ if eq .storage.postgres true }}
+{{- end }}
+{{- if and (eq .toolchains.rust true) (eq .storage.postgres false) }}
+brew "libpq"
+{{- else if eq .storage.postgres true }}
 brew "postgresql", restart_service: true
-{{ end }}
+{{- end }}
 
 # Password managers
 cask "1password-beta"
