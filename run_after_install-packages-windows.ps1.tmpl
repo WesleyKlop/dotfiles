@@ -36,4 +36,10 @@ Write-Host "Installing Chocolatey packages..."
 choco upgrade chocolatey
 
 Write-Host "Installing packages always used"
-choco upgrade git openssh powertoys powershell-core 1password microsoft-windows-terminal
+choco upgrade git openssh powertoys powershell-core 1password microsoft-windows-terminal vim
+
+{{- if eq .toolchains.rust true }}
+[System.Environment]::SetEnvironmentVariable('RUSTUP_HOME',$HOME + "\.local\rustup",[System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable('CARGO_HOME',$HOME + "\.local\cargo",[System.EnvironmentVariableTarget]::User)
+choco upgrade rustup.install
+{{- end }}
