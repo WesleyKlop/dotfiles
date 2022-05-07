@@ -82,11 +82,11 @@ export GITHUB_USER={{ .github.name }}
 
 # SSH agent configuration
 {{- if eq .sshagent "1password" }}
-{{- if eq .chezmoi.os "darwin" }}
+{{-     if eq .chezmoi.os "darwin" }}
 export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-{{- end }}
-{{- if eq .chezmoi.os "linux" }}
-{{- if eq .wsl true }}
+{{-     end }}
+{{-     if eq .chezmoi.os "linux" }}
+{{-         if eq .wsl true }}
 export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
 ( 
   if ! ss -ax | grep -q "$SSH_AUTH_SOCK"; then
@@ -96,10 +96,10 @@ export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
       EXEC:"\"/mnt/c/tools/wsl-ssh-agent/npiperelay.exe\" -ei -s //./pipe/openssh-ssh-agent",nofork
   fi
 ) >& /dev/null
-{{- else }}
+{{-         else }}
 export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-{{- end }}
-{{- end }}
+{{-         end }}
+{{-     end }}
 {{- end }}
 
 {{/* vim: set filetype=zsh: */}}
