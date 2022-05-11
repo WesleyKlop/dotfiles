@@ -9,11 +9,11 @@ path=(
 {{- end }}
 
 {{- if eq .toolchains.go true }}
-    "$HOME/.local/go/bin"
+    "$XDG_DATA_HOME/go/bin"
 {{- end }}
 
 {{- if eq .toolchains.deno true }}
-    "$HOME/.local/deno/bin"
+    "$XDG_DATA_HOME/deno/bin"
 {{- end }}
 
 {{- if (eq .chezmoi.os "darwin") }}
@@ -22,17 +22,23 @@ path=(
     "/opt/homebrew/bin"
   {{- end }}
     "/usr/local/MacGPG2/bin"
-    "$HOME/.krew/bin"
 {{- end }}
 {{- if eq .chezmoi.os "linux" }}
     "/snap/bin"
 {{- end }}
 
+{{- if eq .wsl true }}
+    # WSL Tooling support
+    "/mnt/c/Program Files/Microsoft VS Code/bin"
+{{- end }}
+
+{{- if eq .toolchains.kubernetes true }}
     # Kubernetes
     "$KREW_ROOT/bin"
+{{- end }}
 
     # Defaults you always want
-    "$HOME/.local/share/bin"
+    "$XDG_DATA_HOME/bin"
     "$HOME/.local/bin"
     "/usr/local/sbin"
     "/usr/local/bin"
