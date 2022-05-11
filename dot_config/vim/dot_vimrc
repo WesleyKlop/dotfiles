@@ -10,8 +10,8 @@ let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable
 set nocompatible
 filetype off
 
-set rtp+=~/.local/vim/bundle/Vundle.vim
-call vundle#begin('~/.local/vim/bundle')
+set rtp+=~/.local/share/vim/bundle/Vundle.vim
+call vundle#begin('~/.local/share/vim/bundle')
 
 Plugin 'scrooloose/syntastic'
 Plugin 'rust-lang/rust.vim'
