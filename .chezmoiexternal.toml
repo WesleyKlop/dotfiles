@@ -2,7 +2,7 @@
     type = "git-repo"
     url = "https://github.com/zdharma-continuum/zinit.git"
     refreshPeriod = "24h"
-[".local/vim/bundle/Vundle.vim"]
+[".local/share/vim/bundle/Vundle.vim"]
     type = "git-repo"
     url = "https://github.com/VundleVim/Vundle.vim.git"
     refreshPeriod = "168h"
