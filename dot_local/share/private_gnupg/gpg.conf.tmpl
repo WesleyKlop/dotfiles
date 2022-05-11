@@ -27,7 +27,7 @@ verify-options show-uid-validity
 use-agent
 {{- end }}
 
-# Tell GnuPG that it's okay to get called by a program instead of a terminal
+# Tell GnuPG that it's okay to automatically fetch missing keys
 auto-key-retrieve
 
 ##########
@@ -36,15 +36,11 @@ auto-key-retrieve
 
 # This is the server that --recv-keys, --send-keys, and --search-keys will
 # communicate with to receive keys from, send keys to, and search for keys on.
-keyserver hkps://hkps.pool.sks-keyservers.net
+keyserver hkps://keys.openpgp.org
 
 # When using --refresh-keys, if the key in question has a preferred keyserver
 # URL, then disable use of that preferred keyserver to refresh the key from.
-keyserver-options no-honor-keyserver-url include-revoked auto-key-retrieve
-
-# Don't leak DNS, see https://trac.torproject.org/projects/tor/ticket/2846.
-# gpg: keyserver option 'no-try-dns-srv' is unknown
-
+keyserver-options include-revoked auto-key-retrieve
 
 ######################
 # ALGORITHM AND CIPHERS
@@ -55,19 +51,5 @@ keyserver-options no-honor-keyserver-url include-revoked auto-key-retrieve
 # protects against a subtle attack against subkeys that can sign.
 require-cross-certification
 
-# List of personal digest preferences. When multiple digests are supported by
-# all recipients, choose the strongest one.
-personal-cipher-preferences AES256 AES192 AES CAST5
-
-# List of personal digest preferences. When multiple ciphers are supported by
-# all recipients, choose the strongest one.
-personal-digest-preferences SHA512 SHA384 SHA256 SHA224
-
-# Message digest algorithm used when signing a key.
-cert-digest-algo SHA512
-
-# This preference list is used for new keys and becomes the default for
-# "setpref" in the edit menu.
-default-preference-list SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed
 default-key 89939941B1169B3A86C3A735A6F6DB7CB772F1A0
 
