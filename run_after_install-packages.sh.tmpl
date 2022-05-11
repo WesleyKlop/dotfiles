@@ -3,6 +3,7 @@
 set -euo pipefail
 
 {{ template "environment-config.sh.tmpl" . }}
+{{ template "path-config.sh.tmpl" . }}
 
 echo "Upgrading chezmoi"
 ~/.local/bin/chezmoi upgrade
