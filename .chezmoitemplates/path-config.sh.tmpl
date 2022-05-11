@@ -1,4 +1,3 @@
-echo $PATH;
 # Path as an array for readability
 path=(
 {{- if eq .toolchains.rust true }}
@@ -42,5 +41,7 @@ path=(
     "/usr/sbin"
     "/sbin"
 )
+
 typeset -U path
+
 export PATH=$(IFS=":"; echo "${path[*]}")
