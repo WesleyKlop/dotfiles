@@ -1,5 +1,5 @@
 # Self-elevate the script if required
-if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] 'Administrator')) {
+if (-Not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
   if ([int](Get-CimInstance -Class Win32_OperatingSystem | Select-Object -ExpandProperty BuildNumber) -ge 6000) {
     $CommandLine = "-ExecutionPolicy Bypass -NoExit -File `"" + $MyInvocation.MyCommand.Path + "`" " + $MyInvocation.UnboundArguments
     Start-Process -FilePath PowerShell.exe -Verb RunAs -ArgumentList $CommandLine -Wait
@@ -29,17 +29,21 @@ Function Test-CommandExists {
 if (-Not (Test-CommandExists "choco")) {
   Set-ExecutionPolicy Bypass -Scope Process -Force
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+  Invoke-Expression ((New-Object System.Net.WebClient).DownloadString("https://community.chocolatey.org/install.ps1"))
 }
 
 Write-Host "Installing Chocolatey packages..."
 choco upgrade chocolatey
 
 Write-Host "Installing packages always used"
-choco upgrade git openssh powertoys powershell-core 1password microsoft-windows-terminal vim
+choco upgrade git.install --params "/GitOnlyOnPath /NoAutoCrlf /WindowsTerminal /NoShellIntegration /NoOpenSSH /Editor:VIM"
+choco upgrade vim --params "/NoDesktopShortcuts /NoContextmenu /NoDefaultVimrc"
+choco upgrade openssh powertoys powershell-core 1password microsoft-windows-terminal
+
+Write-Host "Installing graphical applications"
 
 {{- if eq .toolchains.rust true }}
-[System.Environment]::SetEnvironmentVariable('RUSTUP_HOME',$HOME + "\.local\rustup",[System.EnvironmentVariableTarget]::User)
-[System.Environment]::SetEnvironmentVariable('CARGO_HOME',$HOME + "\.local\cargo",[System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable("RUSTUP_HOME", $HOME + "\.local\rustup",[System.EnvironmentVariableTarget]::User)
+[System.Environment]::SetEnvironmentVariable("CARGO_HOME", $HOME + "\.local\cargo",[System.EnvironmentVariableTarget]::User)
 choco upgrade rustup.install
 {{- end }}

@@ -17,68 +17,68 @@ export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
 export SQLITE_HISTORY=$XDG_STATE_HOME/sqlite_history
 
 # GnuPG configuration
-export GNUPGHOME="$HOME/.local/gnupg"
+export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 
 # Platform.io configuration
-export PLATFORMIO_CORE_DIR="$HOME/.local/platform.io"
+export PLATFORMIO_CORE_DIR="$XDG_DATA_HOME/platform.io"
 
 {{- if eq .toolchains.rust true }}
 # Rust configuration
-export RUSTUP_HOME="$HOME/.local/rustup"
-export CARGO_HOME="$HOME/.local/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
 {{- end }}
 
 {{- if eq .toolchains.php true }}
 # PHP configuration
-export COMPOSER_HOME="$HOME/.config/composer"
+export COMPOSER_HOME="$XDG_CONFIG_HOME/composer"
 {{- end }}
 
 
 {{- if eq .toolchains.node true }}
 # Node configuration
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
-export NVM_DIR="$HOME/.local/nvm"
-export NPM_PACKAGES="$HOME/.local/node_modules"
-export VUE_CLI_CONFIG_PATH="$HOME/.config/vue"
+export NVM_DIR="$XDG_DATA_HOME/nvm"
+export NPM_PACKAGES="$XDG_DATA_HOME/node_modules"
+export VUE_CLI_CONFIG_PATH="$XDG_CONFIG_HOME/vue"
 export NODE_REPL_HISTORY="$XDG_STATE_HOME/node_history"
 {{- end }}
 {{- if eq .toolchains.deno true }}
-export DENO_INSTALL="$HOME/.local/deno"
-export DENO_INSTALL_ROOT="$HOME/.local/bin"
+export DENO_INSTALL="$XDG_DATA_HOME/deno"
+export DENO_INSTALL_ROOT="$XDG_DATA_HOME/bin"
 {{- end }}
 
 {{- if eq .toolchains.go true }}
 # Go configuration
-export GOPATH="$HOME/.local/go"
+export GOPATH="$XDG_DATA_HOME/go"
 {{- end }}
 
 {{- if eq .toolchains.elixir true }}
 # Elixir configuration
-export MIX_HOME="$HOME/.local/mix"
-export HEX_HOME="$HOME/.local/hex"
+export MIX_HOME="$XDG_DATA_HOME/mix"
+export HEX_HOME="$XDG_DATA_HOME/hex"
 {{- end }}
 
 # Docker configuration
 {{- if not .wsl }}
-export DOCKER_CONFIG="$HOME/.config/docker"
+export DOCKER_CONFIG="$XDG_CONFIG_HOME/docker"
 {{- end }}
 export COMPOSE_DOCKER_CLI_BUILD=1
 
 {{- if eq .toolchains.kubernetes true }}
 # Kubernetes configuration
-export KREW_ROOT="$HOME/.local/krew"
+export KREW_ROOT="$XDG_DATA_HOME/krew"
 {{- end }}
 
 # Shell configuration
-export ZDOTDIR="${ZDOTDIR:-$HOME/.config/zsh}"
-export ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit"
+export ZDOTDIR="${ZDOTDIR:-$XDG_CONFIG_HOME/zsh}"
+export ZINIT_HOME="$XDG_DATA_HOME/zinit"
 export HISTFILE="$XDG_STATE_HOME/zsh_history"
 
 export LESSHISTFILE="$XDG_STATE_HOME/less_history"
 
 # Github creds
-export GITHUB_TOKEN={{ .github.token }}
-export GITHUB_USER={{ .github.name }}
+export GITHUB_TOKEN={{ .github.token | quote }}
+export GITHUB_USER={{ .github.name | quote }}
 
 # SSH agent configuration
 {{- if eq .sshagent "1password" }}
