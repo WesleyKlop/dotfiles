@@ -67,6 +67,7 @@ export COMPOSE_DOCKER_CLI_BUILD=1
 {{- if eq .toolchains.kubernetes true }}
 # Kubernetes configuration
 export KREW_ROOT="$XDG_DATA_HOME/krew"
+export PULUMI_HOME="$XDG_DATA_HOME/pulumi"
 {{- end }}
 
 # Shell configuration
