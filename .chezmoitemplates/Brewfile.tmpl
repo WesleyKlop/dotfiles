@@ -33,9 +33,11 @@ brew "tree"
 brew "git-delta"
 brew "zoxide"
 
+# MacOS improvements
 cask "monitorcontrol"
 cask "dozer"
 cask "rectangle"
+cask "scroll-reverser"
 
 # Fun stuff
 brew "neofetch"
@@ -48,7 +50,7 @@ brew "zsh"
 cask "iterm2"
 
 # Php toolchain
-{{ if eq .toolchains.php true }}
+{{- if eq .toolchains.php true }}
 tap "shivammathur/php"
 
 brew "php"
@@ -58,48 +60,52 @@ brew "composer"
 brew "dnsmasq"
 brew "nginx"
 brew "mailhog"
-{{ end }}
+{{- end }}
 
 # Deno toolchain
-{{ if eq .toolchains.deno true }}
+{{- if eq .toolchains.deno true }}
 brew "deno"
-{{ end }}
+{{- end }}
 
 # Node toolchain
-{{ if eq .toolchains.node true }}
+{{- if eq .toolchains.node true }}
 # Nothing currently, nvm goes through zsh-nvm
-{{ end }}
+{{- end }}
 
 # Rust toolchain
-{{ if eq .toolchains.rust true }}
+{{- if eq .toolchains.rust true }}
 brew "rustup-init"
-{{ end }}
+{{- end }}
 
 # Java toolchain
-{{ if eq .toolchains.java true }}
+{{- if eq .toolchains.java true }}
 cask "temurin"
-{{ end }}
+{{- end }}
 
 # Go toolchain
-{{ if eq .toolchains.go true }}
+{{- if eq .toolchains.go true }}
 brew "go"
-{{ end }}
+{{- end }}
 
 # Automated backups
 brew "borgbackup"
 cask "vorta"
 
-{{ if eq .toolchains.kubernetes true }}
+{{- if eq .toolchains.swift true }}
+mas "Cleaner for Xcode", id: 1296084683
+mas "Xcode", id: 497799835
+{{- end }}
+
+{{- if eq .toolchains.kubernetes true }}
 # Kubernetes
-tap "fluxcd/tap"
-brew "fluxcd/tap/flux"
 brew "kubernetes-cli"
+brew "kustomize"
 brew "krew"
 brew "helm"
-brew "sops"
+
 brew "k9s"
 cask "lens"
-{{ end }}
+{{- end }}
 
 # Databases
 {{- if eq .storage.mysql true }}
@@ -116,7 +122,6 @@ brew "postgresql", restart_service: true
 cask "1password-beta"
 cask "1password-cli"
 cask "bitwarden"
-mas "1Password for Safari", id: 1569813296
 
 # Communication
 mas "Slack", id: 803453959
@@ -132,7 +137,6 @@ cask "visual-studio-code"
 # School and work apps
 cask "forticlient-vpn"
 cask "postman"
-#cask "stoplight-studio"
 cask "microsoft-office"
 
 # Other casks
