@@ -2,27 +2,28 @@
 
 set -eux
 
-{{ if eq .chezmoi.os "darwin" }}
-    echo "Installing brew if needed..."
-    if ! command -v brew &> /dev/null; then
-        echo "Brew not found... installing!"
-        bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    fi
-    # Rest of the script can now utilize brew
-    eval "$(brew shellenv)"
+{{- if eq .chezmoi.os "darwin" }}
+echo "Installing brew if needed..."
+if ! command -v brew &> /dev/null; then
+    echo "Brew not found... installing!"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+# Rest of the script can now utilize brew
+eval "$(brew shellenv)"
 
-{{ if eq .chezmoi.arch "arm64" }}
-    echo "Installing rosetta..."
-    sudo softwareupdate --install-rosetta
-{{ end }}
-{{ end }}
+{{- if eq .chezmoi.arch "arm64" }}
+echo "Installing rosetta..."
+sudo softwareupdate --install-rosetta
+{{- end }}
+brew install --cask 1password/tap/1password-cli 1password
+{{- end }}
 
 echo "Installing gpg if needed..."
 if ! command -v gpg &> /dev/null; then
-{{ if eq .chezmoi.os "darwin" }}
-        brew install --cask gpg-suite-no-mail
-{{ end }}
-{{ if eq .chezmoi.os "linux" }}
-        sudo apt install gpg # This should be nicer...
-{{ end }}
+{{- if eq .chezmoi.os "darwin" }}
+    brew install --cask gpg-suite-no-mail
+{{- end }}
+{{- if eq .chezmoi.os "linux" }}
+    sudo apt install gpg # This should be nicer...
+{{- end }}
 fi
