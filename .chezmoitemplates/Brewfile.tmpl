@@ -37,7 +37,6 @@ brew "zoxide"
 cask "monitorcontrol"
 cask "dozer"
 cask "rectangle"
-cask "scroll-reverser"
 
 # Fun stuff
 brew "neofetch"
@@ -87,9 +86,11 @@ cask "temurin"
 brew "go"
 {{- end }}
 
+{{- if eq .personal true }}
 # Automated backups
 brew "borgbackup"
 cask "vorta"
+{{- end }}
 
 {{- if eq .toolchains.swift true }}
 mas "Cleaner for Xcode", id: 1296084683
@@ -103,7 +104,6 @@ brew "kustomize"
 brew "krew"
 brew "helm"
 
-brew "k9s"
 cask "lens"
 {{- end }}
 
@@ -119,9 +119,11 @@ brew "postgresql", restart_service: true
 {{- end }}
 
 # Password managers
-cask "1password-beta"
+cask "1password"
 cask "1password-cli"
+{{- if eq .personal true }}
 cask "bitwarden"
+{{- end }}
 
 # Communication
 mas "Slack", id: 803453959
@@ -137,7 +139,9 @@ cask "visual-studio-code"
 # School and work apps
 cask "forticlient-vpn"
 cask "postman"
+{{- if eq .personal true }}
 cask "microsoft-office"
+{{- end }}
 
 # Other casks
 cask "alfred"
