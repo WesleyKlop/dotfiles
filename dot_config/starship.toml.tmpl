@@ -66,6 +66,7 @@ symbol = " "
 
 [package]
 symbol = " "
+disabled = true
 
 [python]
 symbol = " "
@@ -85,6 +86,7 @@ disabled = false
 format = "[$symbol$context( )]($style) in "
 [kubernetes.context_aliases]
 "gke_.*_(?P<var_cluster>[\\w-]+)(?:-cluster)" = "gke-$var_cluster"
+"gke_..-(?P<t>[\\w-]+)_.*_(?P<c>[\\w]+)$" = "$t-$c"
 
 [env_var.WSL_DISTRO_NAME]
 disabled = false

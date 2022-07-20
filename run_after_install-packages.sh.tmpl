@@ -46,10 +46,14 @@ fi
 cargo="$CARGO_HOME/bin/cargo"
 if [ ! -f "$CARGO_HOME/bin/cargo-install-update" ]; then
     $cargo install "${packages[@]}"
+{{- if or (eq .storage.mysql true) (eq .storage.postgres true) (eq .storage.sqlite true) }}
     $cargo install diesel_cli --no-default-features --features postgres
+{{- end }}
 else
     $cargo install-update "${packages[@]}"
+{{- if or (eq .storage.mysql true) (eq .storage.postgres true) (eq .storage.sqlite true) }}
     $cargo install-update diesel_cli 
+{{- end }}
 fi
 {{- end }}
 
