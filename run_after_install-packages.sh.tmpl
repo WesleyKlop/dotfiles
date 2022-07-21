@@ -80,6 +80,9 @@ rustup completions zsh > "$ZDOTDIR/completions/_rustup"
 if command -v op > /dev/null; then
   op completion zsh > "$ZDOTDIR/completions/_op"
 fi
+if command -v crictl > /dev/null; then
+  crictl completion zsh > "$ZDOTDIR/completions/_crictl"
+fi
 
 zsh -ic "$(cat <<- ZSH
 {{- if eq .chezmoi.os "darwin" }}
