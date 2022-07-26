@@ -31,6 +31,7 @@
 [push]
     default = simple
     rebase = false
+    autoSetupRemote = true
 [alias]
     cleanup = "!git branch --merged | rg -v '^\\*|master|develop|main|test|production' | xargs -n1 -r git branch -d"
     update = "!git checkout develop && git pull && git cleanup"
