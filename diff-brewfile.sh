@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+export HOMEBREW_NO_AUTO_UPDATE=1
+
 # The actually installed packages
 current_brewfile="$(brew bundle dump --file=- | rg '^(\w[^,]*)' -or '$1' | sort)"
 # The ones that we have registered in chezmoi

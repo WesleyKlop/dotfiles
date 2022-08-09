@@ -32,6 +32,7 @@ brew "tealdeer"
 brew "tree"
 brew "git-delta"
 brew "zoxide"
+brew "just"
 
 # MacOS improvements
 cask "monitorcontrol"
@@ -83,7 +84,7 @@ cask "temurin"
 
 # Go toolchain
 {{- if eq .toolchains.go true }}
-brew "go"
+brew "go@1.18"
 {{- end }}
 
 {{- if eq .personal true }}
