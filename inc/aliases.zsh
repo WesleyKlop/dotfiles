@@ -16,3 +16,5 @@ alias cat="bat"
 
 alias nano="vim"
 alias emacs="vim"
+
+alias tf="terraform"
