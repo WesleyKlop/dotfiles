@@ -6,15 +6,17 @@
     type = "git-repo"
     url = "https://github.com/VundleVim/Vundle.vim.git"
     refreshPeriod = "168h"
+{{- if not (eq .chezmoi.os "darwin") }}
 [".local/bin/argocd"]
     type = "file"
-{{- if eq .chezmoi.os "windows" }}
+{{-   if eq .chezmoi.os "windows" }}
     url = "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-windows-{{ .chezmoi.arch }}.exe"
-{{- else }}
+{{-   else }}
     url = "https://github.com/argoproj/argo-cd/releases/latest/download/argocd-{{ .chezmoi.os }}-{{ .chezmoi.arch }}"
-{{- end }}
+{{-   end }}
     executable = true
     refreshPeriod = "168h"
+{{- end }}
 
 
 [".config/k9s/skin.yml"]
