@@ -10,6 +10,12 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice wait'!' lucid nocd \
     atload'!prompt_starship_precmd'
 
+# History config
+export HISTFILE="$XDG_STATE_HOME/zsh_history"
+export HISTFILESIZE=1000000000
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+
 # Plugin config
 export NVM_LAZY_LOAD=${NVM_LAZY_LOAD-true}
 export NVM_AUTO_USE=${NVM_AUTO_USE-true}

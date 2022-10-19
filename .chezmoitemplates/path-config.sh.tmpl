@@ -20,6 +20,7 @@ path=(
     # MacOS specific
   {{- if eq .chezmoi.arch "arm64" }}
     "/opt/homebrew/bin"
+    "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin"
   {{- end }}
     "/usr/local/MacGPG2/bin"
 {{- end }}
