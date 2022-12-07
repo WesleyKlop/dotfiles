@@ -6,6 +6,10 @@
     type = "git-repo"
     url = "https://github.com/VundleVim/Vundle.vim.git"
     refreshPeriod = "168h"
+[".local/share/volta/bin"]
+    type = "archive"
+    url = "https://github.com/volta-cli/volta/releases/download/v1.1.0/volta-1.1.0-macos-aarch64.tar.gz"
+
 {{- if not (eq .chezmoi.os "darwin") }}
 [".local/bin/argocd"]
     type = "file"

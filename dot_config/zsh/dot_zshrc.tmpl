@@ -26,9 +26,6 @@ zinit snippet OMZL::completion.zsh
 zinit snippet OMZP::git
 zinit snippet OMZP::gpg-agent
 zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
-{{- if eq .toolchains.node true }}
-    lukechilds/zsh-nvm \
-{{- end }}
     zsh-users/zsh-syntax-highlighting \
     ajeetdsouza/zoxide \
     jasonmccreary/git-trim

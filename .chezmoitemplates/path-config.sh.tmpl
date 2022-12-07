@@ -12,6 +12,9 @@ path=(
     "$XDG_DATA_HOME/go/bin"
 {{- end }}
 
+{{- if eq .toolchains.node true }}
+    "$XDG_DATA_HOME/volta/bin"
+{{- end }}
 {{- if eq .toolchains.deno true }}
     "$XDG_DATA_HOME/deno/bin"
 {{- end }}
