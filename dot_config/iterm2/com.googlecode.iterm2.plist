@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CopyWithStylesByDefault</key>
+	<true/>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>Dracula</key>
@@ -217,6 +219,8 @@
 	</dict>
 	<key>Default Bookmark Guid</key>
 	<string>413F4410-7232-48F3-974B-B0AD8898D044</string>
+	<key>DisallowCopyEmptyString</key>
+	<true/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>

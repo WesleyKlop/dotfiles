@@ -1,49 +1,45 @@
 {
+  "editor.fontFamily": "\"JetbrainsMono Nerd Font\", Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.lineHeight": 1.6,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.inlineSuggest.enabled": true,
+  "editor.codeActionsOnSave": {},
+  "editor.suggest.showWords": false,
+
+  "debug.console.fontFamily": "editor",
+
+  "explorer.confirmDragAndDrop": false,
+
   "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "Dracula",
-  "redhat.telemetry.enabled": false,
-  "editor.fontFamily": "\"JetbrainsMono Nerd Font\", Menlo, Monaco, 'Courier New', monospace",
-  "gitlens.virtualRepositories.enabled": false,
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.fontSize": 14,
-  "editor.lineHeight": 1.6,
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.formatOnSave": true,
-  "files.autoSave": "afterDelay",
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "workbench.localHistory.maxFileEntries": 1337,
+
+  "files.autoSave": "afterDelay",
+
   "terminal.integrated.shellIntegration.history": 1337,
   "terminal.integrated.bellDuration": 0,
   "terminal.integrated.scrollback": 10000,
-  "explorer.confirmDragAndDrop": false,
+
+  "redhat.telemetry.enabled": false,
+
+  "gitlens.virtualRepositories.enabled": false,
+
   "vs-kubernetes": {
     "vs-kubernetes.crd-code-completion": "enabled"
   },
-  "editor.inlineSuggest.enabled": true,
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "python.autoComplete.extraPaths": [],
-  "python.analysis.extraPaths": [],
-  "editor.fontLigatures": true,
-  "debug.console.fontFamily": "editor",
-  "terminal.integrated.fontFamily": "\"JetbrainsMono Nerd Font\"",
-  "editor.codeActionsOnSave": {
-  
-  }
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.paths": false,
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.suggest.paths": false,
+  "javascript.referencesCodeLens.enabled": true,
+
+  "path-intellisense.extensionOnImport": true,
+
+  "rust-analyzer.checkOnSave.command": "clippy"
 }
