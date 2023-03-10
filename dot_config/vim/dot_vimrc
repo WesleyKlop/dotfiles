@@ -15,6 +15,9 @@ call vundle#begin('~/.local/share/vim/bundle')
 
 Plugin 'scrooloose/syntastic'
 Plugin 'rust-lang/rust.vim'
+Plugin 'pangloss/vim-javascript'    " JavaScript support
+Plugin 'leafgarland/typescript-vim' " TypeScript syntax
+Plugin 'maxmellon/vim-jsx-pretty'
 
 call vundle#end()
 filetype plugin indent on
