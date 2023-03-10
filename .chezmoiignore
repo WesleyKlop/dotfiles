@@ -4,23 +4,23 @@ install.ps1
 diff-brewfile.sh
 inc/
 
-{{ if ne .chezmoi.os "darwin" }}
+{{- if ne .chezmoi.os "darwin" }}
 .local/share/bin/clean-xcode
 .local/share/bin/dump-brewfile
 .local/share/bin/valet-start
 .local/share/bin/valet-stop
-{{ end }}
-{{ if eq .chezmoi.os "darwin" }}
+{{- end }}
+{{- if eq .chezmoi.os "darwin" }}
 .local/share/bin/bat
-{{ end }}
+{{- end }}
 
-{{ if ne .chezmoi.os "linux" }}
+{{- if ne .chezmoi.os "linux" }}
 .motd_shown
-{{ end }}
+{{- end }}
 
-{{ if ne .chezmoi.os "windows" }}
+{{- if ne .chezmoi.os "windows" }}
 *.ps1
-{{ else }}
+{{- else }}
 .local/gnupg
 .local/share/bin
 .local/state
@@ -34,20 +34,24 @@ inc/
 .config/vim
 .config/vue
 *.sh
-{{ end }}
+{{- end }}
 
-{{ if ne .chezmoi.hostname "idris" }}
+{{- if ne .chezmoi.hostname "idris" }}
 .motd_shown
-{{ else }}
+{{- else }}
 .config/ideavim
-{{ end }}
+{{- end }}
 
-{{ if eq .toolchains.node false }}
+{{- if eq .toolchains.node false }}
 .config/angular
 .config/npm
 .config/vue
-{{ end }}
+{{- end }}
 
-{{ if eq .storage.sqlite false }}
+{{- if eq .storage.sqlite false }}
 .sqliterc
-{{ end }}
+{{- end }}
+
+{{- if eq .toolchains.php false }}
+.config/composer
+{{- end }}
