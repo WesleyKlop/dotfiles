@@ -3,9 +3,16 @@
 set -eux
 
 echo "Installing gpg if needed..."
-if ! command -v gpg &> /dev/null; then
-{{- if eq .chezmoi.os "linux" }}
+if ! command -v gpg &>/dev/null; then
+    {{- if eq .chezmoi.os "linux" }}
     sudo apt install gpg # This should be nicer...
-{{- end }}
+    {{- end }}
+    echo Done
+fi
+
+echo "Setting user shell if needed..."
+zshloc="$(which zsh)"
+if [ "$SHELL" != "$zshloc" ]; then
+    chsh -s "$zshloc"
     echo Done
 fi

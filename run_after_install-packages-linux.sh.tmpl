@@ -14,6 +14,8 @@ packages=(
     neovim
     neofetch
     fzf
+    unzip
+    zsh
 )
 
 {{- if eq .wsl true }}
@@ -73,15 +75,6 @@ packages+=(
 )
 {{- end }}
 
-# Deno toolchain
-{{- if eq .toolchains.deno true }}
-if ! command -v deno &> /dev/null; then
-    sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
-else
-    deno upgrade
-fi
-{{- end }}
-
 packages+=(
     gpg
     gpg-agent
@@ -98,18 +91,28 @@ packages+=(
 )
 {{- end }}
 
-{{- if eq .wsl false }}
-sudo snap install starship
-{{- else }}
-sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y
-{{- end }}
-
 sudo apt update
 sudo apt install \
     --no-install-recommends \
     --no-install-suggests \
     -y \
     ${packages[@]}
+
+# Starship
+{{- if eq .wsl false }}
+sudo snap install starship
+{{- else }}
+sh -c "$(curl -fsSL https://starship.rs/install.sh | head -n -5)" -- -y -b "$HOME/.local/bin"
+{{- end }}
+
+# Deno toolchain
+{{- if eq .toolchains.deno true }}
+if ! command -v deno &> /dev/null; then
+    sh -c "$(curl -fsSL https://deno.land/x/install/install.sh)"
+else
+    deno upgrade
+fi
+{{- end }}
 
 {{ if eq .automation.update true -}}
 sudo apt upgrade -y
