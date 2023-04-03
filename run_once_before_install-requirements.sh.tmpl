@@ -17,6 +17,7 @@ if [ "$SHELL" != "$zshloc" ]; then
     echo Done
 fi
 
+{{- if eq .wsl true }}
 utils_dir="/mnt/c/Users/$(whoami)/AppData/Local/wsl-utils"
 if [ ! -d "$utils_dir" ]; then
     mkdir -p "$utils_dir"
@@ -26,3 +27,4 @@ if [ ! -d "$utils_dir" ]; then
     rm "./npiperelay.zip"
     popd
 fi
+{{- end }}
