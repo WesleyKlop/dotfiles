@@ -100,7 +100,7 @@ export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
     rm -f "$SSH_AUTH_SOCK"
     setsid --fork socat \
       UNIX-LISTEN:$SSH_AUTH_SOCK,fork \
-      EXEC:"\"/mnt/c/tools/wsl-ssh-agent/npiperelay.exe\" -ei -s //./pipe/openssh-ssh-agent",nofork
+      EXEC:"\"/mnt/c/Users/$(whoami)/AppData/Local/wsl-utils/npiperelay.exe\" -ei -s //./pipe/openssh-ssh-agent",nofork
   fi
 ) >& /dev/null
 {{-         else }}

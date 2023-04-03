@@ -16,3 +16,13 @@ if [ "$SHELL" != "$zshloc" ]; then
     chsh -s "$zshloc"
     echo Done
 fi
+
+utils_dir="/mnt/c/Users/$(whoami)/AppData/Local/wsl-utils"
+if [ ! -d "$utils_dir" ]; then
+    mkdir -p "$utils_dir"
+    pushd "$utils_dir"
+    curl -fsSLo "./npiperelay.zip" "https://github.com/jstarks/npiperelay/releases/download/v0.1.0/npiperelay_windows_amd64.zip"
+    unzip "./npiperelay.zip" npiperelay.exe
+    rm "./npiperelay.zip"
+    popd
+fi
