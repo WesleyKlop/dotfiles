@@ -9,6 +9,7 @@ inc/
 .local/share/bin/dump-brewfile
 .local/share/bin/valet-start
 .local/share/bin/valet-stop
+Library
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
 .local/share/bin/bat
