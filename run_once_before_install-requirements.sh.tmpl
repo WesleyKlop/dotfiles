@@ -10,12 +10,14 @@ if ! command -v gpg &>/dev/null; then
     echo Done
 fi
 
+{{- if not (eq .chezmoi.os "darwin") }}
 echo "Setting user shell if needed..."
 zshloc="$(which zsh)"
 if [ "$SHELL" != "$zshloc" ]; then
     chsh -s "$zshloc"
     echo Done
 fi
+{{- end }}
 
 {{- if eq .wsl true }}
 utils_dir="/mnt/c/Users/$(whoami)/AppData/Local/wsl-utils"
