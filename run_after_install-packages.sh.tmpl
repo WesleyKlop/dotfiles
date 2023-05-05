@@ -84,6 +84,8 @@ if command -v crictl > /dev/null; then
   crictl completion zsh > "$ZDOTDIR/completions/_crictl"
 fi
 
+find -L "$ZDOTDIR/completions" -name "$ZDOTDIR/completions" -o -type d -prune -o -type l -exec rm {} +
+
 zsh -ic "$(cat <<- ZSH
 {{- if eq .chezmoi.os "darwin" }}
 zinit creinstall -Q "$(brew --prefix)/share/zsh/site-functions"
