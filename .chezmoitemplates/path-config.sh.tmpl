@@ -6,6 +6,7 @@ path=(
 
 {{- if eq .toolchains.php true }}
     "$COMPOSER_HOME/vendor/bin"
+    "$HOME/Library/Application Support/Herd/bin"
 {{- end }}
 
 {{- if eq .toolchains.go true }}

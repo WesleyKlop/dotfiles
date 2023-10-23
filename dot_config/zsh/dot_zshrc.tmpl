@@ -46,6 +46,7 @@ zinit wait lucid atload"
 # Command aliases, some are overwritten by oh-my-zsh
 {{- include "inc/aliases.zsh" }}
 
+eval "$(direnv hook zsh)"
 # Start starship
 eval "$(starship init zsh)"
 

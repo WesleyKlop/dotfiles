@@ -51,13 +51,7 @@ cask "iterm2"
 
 # Php toolchain
 {{- if eq .toolchains.php true }}
-brew "php"
-brew "composer"
-
-# Valet dependencies
-brew "dnsmasq"
-brew "nginx"
-brew "mailhog"
+cask "herd"
 {{- end }}
 
 # Deno toolchain

@@ -1,3 +1,5 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 [username]
 show_always=true
 
@@ -9,6 +11,7 @@ disabled=true
 
 [aws]
 symbol = "  "
+disabled = true
 
 [buf]
 symbol = " "
@@ -86,8 +89,7 @@ symbol = "ﴱ "
 disabled = false
 format = "[$symbol$context( )]($style) in "
 [kubernetes.context_aliases]
-"gke_.*_(?P<var_cluster>[\\w-]+)(?:-cluster)" = "gke-$var_cluster"
-"gke_..-(?P<t>[\\w-]+)_.*_(?P<c>[\\w]+)$" = "$t-$c"
+"^gke_(?P<project>.{2,7}-(?P<tier>[\\w-]+))_(?P<region>[\\w-]+)_(?P<cluster>[\\w-]+)$" = "gke-$tier-$cluster"
 
 [env_var.WSL_DISTRO_NAME]
 disabled = false
