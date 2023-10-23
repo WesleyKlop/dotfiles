@@ -4,6 +4,13 @@ tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
 
+# 3rd party taps
+tap "1password/tap"
+tap "bufbuild/buf"
+tap "fluxcd/tap"
+tap "pulumi/tap"
+tap "shivammathur/php"
+
 # To add App Store items
 brew "mas"
 
@@ -18,6 +25,7 @@ brew "zip"
 brew "unzip"
 brew "watch"
 cask "gpg-suite-no-mail"
+brew "direnv"
 
 # Useful tools 
 brew "bat"
@@ -33,14 +41,21 @@ brew "tree"
 brew "git-delta"
 brew "zoxide"
 brew "just"
+mas "Boop", id: 1518425043
+mas "WireGuard", id: 1451685025
+
+# Document processing
+mas "Keynote", id: 409183694
 
 # MacOS improvements
 cask "monitorcontrol"
 cask "dozer"
 cask "rectangle"
+mas "AdGuard for Safari", id: 1440147259
 
 # Fun stuff
 brew "neofetch"
+brew "sl"
 
 # Required for shell
 brew "starship"
@@ -114,6 +129,7 @@ brew "postgresql", restart_service: true
 # Password managers
 cask "1password"
 cask "1password-cli"
+mas "1Password for Safari", id: 1569813296
 {{- if eq .personal true }}
 cask "bitwarden"
 {{- end }}
