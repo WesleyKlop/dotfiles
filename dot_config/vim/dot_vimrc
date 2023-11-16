@@ -11,6 +11,7 @@ set nocompatible
 filetype off
 
 set rtp+=~/.local/share/vim/bundle/Vundle.vim
+set rtp+=/opt/homebrew/opt/fzf
 call vundle#begin('~/.local/share/vim/bundle')
 
 Plugin 'scrooloose/syntastic'
