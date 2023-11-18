@@ -10,7 +10,7 @@
 {{- $_ := set $data "toolchains" (default (dict) (get $data "toolchains")) -}}
 
 {{- $sshagent := "gpg" -}}
-{{- if promptBool "Use 1Password ssh agent" -}}
+{{- if or (eq .chezmoi.os "darwin") (promptBool "Use 1Password ssh agent") -}}
 {{-     $sshagent = "1password" -}}
 {{- end -}}
 
