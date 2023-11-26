@@ -1,7 +1,5 @@
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 
 # 3rd party taps
@@ -9,7 +7,6 @@ tap "1password/tap"
 tap "bufbuild/buf"
 tap "fluxcd/tap"
 tap "pulumi/tap"
-tap "shivammathur/php"
 
 # To add App Store items
 brew "mas"
@@ -91,7 +88,7 @@ cask "temurin"
 
 # Go toolchain
 {{- if eq .toolchains.go true }}
-brew "go@1.18"
+brew "go"
 {{- end }}
 
 {{- if eq .personal true }}
@@ -141,16 +138,12 @@ cask "microsoft-teams"
 cask "whatsapp"
 
 # Development tooling
-cask "docker"
+cask "orbstack"
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
 
 # School and work apps
-cask "forticlient-vpn"
 cask "postman"
-{{- if eq .personal true }}
-cask "microsoft-office"
-{{- end }}
 
 # Other casks
 cask "alfred"

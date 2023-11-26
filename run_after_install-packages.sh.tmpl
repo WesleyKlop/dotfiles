@@ -61,11 +61,6 @@ fi
 {{- if eq .toolchains.php true }}
 echo "Installing/updating php toolchain..."
 
-{{-     if eq .chezmoi.os "darwin" }}
-# On macOS, install valet
-composer global require laravel/valet
-{{-     end }}
-
 composer global update
 {{- end }}
 
