@@ -24,3 +24,8 @@ diff-brewfile:
     --suppress-common-lines \
     --label="current" <(echo "$current_brewfile") \
     --label="stored" <(echo "$stored_brewfile")
+
+[macos]
+[no-exit-message]
+view-brewfile:
+  chezmoi execute-template < .chezmoitemplates/Brewfile.tmpl

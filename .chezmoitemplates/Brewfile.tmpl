@@ -1,11 +1,10 @@
 tap "homebrew/bundle"
 tap "homebrew/cask-versions"
+tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
 # 3rd party taps
 tap "1password/tap"
-tap "bufbuild/buf"
-tap "fluxcd/tap"
 tap "pulumi/tap"
 
 # To add App Store items
@@ -88,7 +87,10 @@ cask "temurin"
 
 # Go toolchain
 {{- if eq .toolchains.go true }}
+tap "bufbuild/buf"
 brew "go"
+brew "bufbuild/buf/buf"
+brew "ko"
 {{- end }}
 
 {{- if eq .personal true }}
@@ -103,19 +105,24 @@ mas "Xcode", id: 497799835
 {{- end }}
 
 {{- if eq .toolchains.kubernetes true }}
+tap "fluxcd/tap"
+
 # Kubernetes
 brew "kubernetes-cli"
 brew "kustomize"
 brew "krew"
 brew "helm"
 brew "argocd"
+brew "fluxcd/tap/flux"
 
+brew "terraform"
+brew "pulumi"
 {{- end }}
 
 # Databases
 {{- if eq .storage.mysql true }}
 brew "groonga"
-brew "mariadb"
+brew "mariadb", restart_service: true
 {{- end }}
 {{- if and (eq .toolchains.rust true) (eq .storage.postgres false) }}
 brew "libpq"
@@ -141,6 +148,8 @@ cask "whatsapp"
 cask "orbstack"
 cask "jetbrains-toolbox"
 cask "visual-studio-code"
+brew "dive"
+brew "crane"
 
 # School and work apps
 cask "postman"
